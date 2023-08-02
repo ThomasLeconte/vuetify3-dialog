@@ -52,18 +52,7 @@ export default defineComponent({
       }
     },
     _color(){
-      switch (this.level) {
-        case 'info':
-          return 'primary'
-        case 'warning':
-          return 'warning'
-        case 'error':
-          return 'error'
-        case 'success':
-          return 'success'
-        default:
-          return 'primary'
-      }
+      return this.level === 'info' ? 'primary' : this.level
     }
   },
   methods: {
@@ -79,13 +68,13 @@ export default defineComponent({
 <template>
   <v-dialog v-model="showDialog">
     <v-card>
-      <v-card-title><v-icon :color="level"></v-icon>{{title}}</v-card-title>
+      <v-card-title class="d-flex align-center"><v-icon :color="_color" class="mr-2">{{_icon}}</v-icon>{{title}}</v-card-title>
       <v-card-text>{{text}}</v-card-text>
       <v-card-actions>
         <v-btn
           v-for="button in _buttons"
           :key="button.value"
-          :color="button.color"
+          :color="button.color || _color"
           :variant="button.variant"
           @click="close(button.key)"
         >

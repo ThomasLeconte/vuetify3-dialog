@@ -1,59 +1,72 @@
 import { App, Plugin, createApp } from 'vue';
-import Dialog from './Dialog.vue';
+import Dialog from './components/Dialog.vue';
 
 export type DialogButton = {
   key: string;
-  label: string;
+  title: string;
   color?: string;
   variant?: string;
 };
 
-export const Dialogs: Plugin = {
-  install(app: App, options: { vuetify: Plugin }) {
-    if (!options) {
-      throw new Error('Dialogs plugin requires options');
-    }
+export function initDialogsContext(app: App, options: { vuetify: Plugin }) {
+  function warn(text: string, title?: string) {
+    createDialog(title || 'Warning', text, [{ key: 'ok', title: 'OK', color: 'warning' }], 'warning');
+  }
 
-    if (!options.vuetify) {
-      throw new Error('Dialogs plugin requires vuetify plugin');
-    }
+  function error(text: string, title?: string) {
+    createDialog(title || 'Error', text, [{ key: 'ok', title: 'OK', color: 'error' }], 'error');
+  }
 
-    function createDialog(title: string, text: string, buttons?: DialogButton[]) {
-      try {
-        const div = document.createElement('div');
+  function info(text: string, title?: string) {
+    createDialog(title || 'Info', text, [{ key: 'ok', title: 'OK', color: 'info' }], 'info');
+  }
 
-        if (!isNotEmptyOrNull(title)) throw new Error('title is required');
-        if (!isNotEmptyOrNull(text)) throw new Error('text is required');
+  function success(text: string, title?: string) {
+    createDialog(title || 'Success', text, [{ key: 'ok', title: 'OK', color: 'success' }], 'success');
+  }
 
-        if (buttons) {
-          buttons.forEach(validateButton);
-        }
+  function createDialog(title: string, text: string, buttons?: DialogButton[], level?: string) {
+    try {
+      const div = document.createElement('div');
 
-        return new Promise((resolve, reject) => {
-          const _app = createApp(Dialog, {
-            title,
-            text,
-            buttons,
-            onCloseDialog: (value: any) => {
-              resolve(value);
-              _app.unmount();
-              document.body.removeChild(div);
-            },
-          });
+      if (!isNotEmptyOrNull(title)) throw new Error('title is required');
+      if (!isNotEmptyOrNull(text)) throw new Error('text is required');
 
-          _app.use(options.vuetify);
-
-          document.body.appendChild(div);
-          _app.mount(div);
-        });
-      } catch (err: any) {
-        console.error(`[Dialogs] ${err.message} [${err.stack}]`);
+      if (buttons) {
+        buttons.forEach(validateButton);
       }
-    }
 
-    app.config.globalProperties.$createDialog = createDialog;
-  },
-};
+      return new Promise((resolve, reject) => {
+        const _app = createApp(Dialog, {
+          title,
+          text,
+          buttons,
+          level,
+          onCloseDialog: (value: any) => {
+            resolve(value);
+            _app.unmount();
+            document.body.removeChild(div);
+          },
+        });
+
+        _app.use(options.vuetify);
+
+        document.body.appendChild(div);
+        _app.mount(div);
+      });
+    } catch (err: any) {
+      console.error(`[Dialogs] ${err.message} [${err.stack}]`);
+    }
+  }
+
+  app.config.globalProperties.$dialog = {
+    createDialog,
+    warn,
+    error,
+    info,
+    success,
+  };
+}
 
 function validateButton(button: any, index: number) {
   if (!button) {
@@ -70,5 +83,5 @@ function validateButton(button: any, index: number) {
 }
 
 function isNotEmptyOrNull(value: string): boolean {
-  return value !== null && value.trim().length > 0 && value !== '';
+  return value !== undefined && value !== null && value.trim().length > 0 && value !== '';
 }
