@@ -1,5 +1,5 @@
 # Vuetify 3 Dialog
-Light Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
+Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 
 ## Install it
 First, run `npm install vuetify3-dialog`.  
