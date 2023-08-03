@@ -10,27 +10,27 @@ export type DialogButton = {
 
 export function initDialogsContext(app: App, options: { vuetify: Plugin }) {
   function warn(text: string, title?: string) {
-    createDialog(title || 'Warning', text, [{ key: 'ok', title: 'OK', color: 'warning' }], 'warning');
+    return createDialog(title || 'Warning', text, [{ key: 'ok', title: 'OK', color: 'warning' }], 'warning');
   }
 
   function error(text: string, title?: string) {
-    createDialog(title || 'Error', text, [{ key: 'ok', title: 'OK', color: 'error' }], 'error');
+    return createDialog(title || 'Error', text, [{ key: 'ok', title: 'OK', color: 'error' }], 'error');
   }
 
   function info(text: string, title?: string) {
-    createDialog(title || 'Info', text, [{ key: 'ok', title: 'OK', color: 'info' }], 'info');
+    return createDialog(title || 'Info', text, [{ key: 'ok', title: 'OK', color: 'info' }], 'info');
   }
 
   function success(text: string, title?: string) {
-    createDialog(title || 'Success', text, [{ key: 'ok', title: 'OK', color: 'success' }], 'success');
+    return createDialog(title || 'Success', text, [{ key: 'ok', title: 'OK', color: 'success' }], 'success');
   }
 
   function createDialog(title: string, text: string, buttons?: DialogButton[], level?: string) {
     try {
       const div = document.createElement('div');
 
-      if (!isNotEmptyOrNull(title)) throw new Error('title is required');
-      if (!isNotEmptyOrNull(text)) throw new Error('text is required');
+      if (!isNotEmptyAndNotNull(title)) throw new Error('title is required');
+      if (!isNotEmptyAndNotNull(text)) throw new Error('text is required');
 
       if (buttons) {
         buttons.forEach(validateButton);
@@ -73,15 +73,15 @@ function validateButton(button: any, index: number) {
     throw new Error(`button at index ${index} is not defined`);
   }
 
-  if (!isNotEmptyOrNull(button.key)) {
+  if (!isNotEmptyAndNotNull(button.key)) {
     throw new Error(`button at index ${index} has no key`);
   }
 
-  if (!isNotEmptyOrNull(button.title)) {
+  if (!isNotEmptyAndNotNull(button.title)) {
     throw new Error(`button at index ${index} has no title`);
   }
 }
 
-function isNotEmptyOrNull(value: string): boolean {
+function isNotEmptyAndNotNull(value: string): boolean {
   return value !== undefined && value !== null && value.trim().length > 0 && value !== '';
 }

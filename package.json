@@ -4,8 +4,18 @@
   "description": "",
   "main": "lib/index.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./lib": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js"
+    }
+  },
   "scripts": {
-    "build": "npm run format && npm run lint && tsc",
+    "build": "npm run format && npm run lint && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
@@ -20,10 +30,18 @@
   "author": "ThomasLeconte",
   "license": "ISC",
   "devDependencies": {
+    "npm": "^9.8.1",
     "prettier": "^3.0.0",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "rollup-plugin-vue": "^6.0.0",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vue": "^3.2.0",
+    "vue-template-compiler": "^2.7.14",
+    "vuetify": "^3.3.0",
+    "rollup": "^3.27.0"
   },
   "peerDependencies": {
     "vue": "^3.2.0",

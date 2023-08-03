@@ -2,11 +2,34 @@ import { App, Plugin, createApp } from 'vue';
 import Snackbar from './components/Snackbar.vue';
 
 export function initSnackbarContext(app: App, options: { vuetify: Plugin }) {
-  function createSnackbar(text: string, timeout?: number, level?: string, variant?: string) {
+  function warn(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
+    return createSnackbar(text, timeout, 'warning', variant, rounded);
+  }
+  function error(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
+    return createSnackbar(text, timeout, 'error', variant, rounded);
+  }
+  function info(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
+    return createSnackbar(text, timeout, 'info', variant, rounded);
+  }
+  function success(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
+    return createSnackbar(text, timeout, 'success', variant, rounded);
+  }
+
+  function createSnackbar(
+    text: string,
+    timeout?: number,
+    level?: string,
+    variant?: string,
+    rounded?: string | boolean,
+    location?: string,
+  ) {
     try {
       const div = document.createElement('div');
 
-      if (!isNotEmptyOrNull(text)) throw new Error('text is required');
+      if (!isNotEmptyAndNotNull(text)) throw new Error('text is required');
+      if (timeout && timeout < 0) throw new Error('timeout must be greater than 0');
+      if (!variant) variant = 'elevated';
+      if (typeof rounded === 'boolean' && rounded === true) rounded = 'pill';
 
       return new Promise((resolve, reject) => {
         const _app = createApp(Snackbar, {
@@ -14,6 +37,8 @@ export function initSnackbarContext(app: App, options: { vuetify: Plugin }) {
           timeout,
           level,
           variant,
+          rounded,
+          location,
           onCloseSnackbar: () => {
             resolve(true);
             _app.unmount();
@@ -33,9 +58,13 @@ export function initSnackbarContext(app: App, options: { vuetify: Plugin }) {
 
   app.config.globalProperties.$snackbar = {
     createSnackbar,
+    warn,
+    error,
+    info,
+    success,
   };
 }
 
-function isNotEmptyOrNull(value: string): boolean {
+function isNotEmptyAndNotNull(value: string): boolean {
   return value !== undefined && value !== null && value.trim().length > 0 && value !== '';
 }

@@ -1,8 +1,18 @@
 <script lang="ts">
 import { defineComponent } from "vue";
+import { VIcon, VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog } from 'vuetify/lib/components/index.mjs'
 
 export default defineComponent({
   name: 'Dialog',
+  components: {
+    VIcon,
+    VCard,
+    VCardTitle,
+    VCardText,
+    VCardActions,
+    VBtn,
+    VDialog
+  },
   props: {
     title: {
       type: String,
@@ -66,12 +76,12 @@ export default defineComponent({
 
 
 <template>
-  <v-dialog v-model="showDialog">
-    <v-card>
-      <v-card-title class="d-flex align-center"><v-icon :color="_color" class="mr-2">{{_icon}}</v-icon>{{title}}</v-card-title>
-      <v-card-text>{{text}}</v-card-text>
-      <v-card-actions>
-        <v-btn
+  <VDialog v-model="showDialog">
+    <VCard>
+      <VCardTitle class="d-flex align-center"><VIcon :color="_color" class="mr-2">{{_icon}}</VIcon>{{title}}</VCardTitle>
+      <VCardText>{{text}}</VCardText>
+      <VCardActions>
+        <VBtn
           v-for="button in _buttons"
           :key="button.value"
           :color="button.color || _color"
@@ -79,10 +89,10 @@ export default defineComponent({
           @click="close(button.key)"
         >
           {{button.title}}
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+        </VBtn>
+      </VCardActions>
+    </VCard>
+  </VDialog>
 </template>
 
 <style lang="scss">
