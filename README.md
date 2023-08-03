@@ -25,11 +25,15 @@ You can now use the plugin in your components. There is two main variable availa
 ### Dialogs
 You can create a fully personalized dialog with the following method :
 ```js
-this.$dialog.create("My title", "My dialog message", [
-  { title: 'My first button', key: 'button1' },
-  { title: 'My second button', key: 'button2' },
-  { title: 'My third button', key: 'button3' },
-]).then((anwser) => {
+this.$dialog.create({
+  title: "My title",
+  text: "My dialog message",
+  buttons: [
+    { title: 'My first button', key: 'button1' },
+    { title: 'My second button', key: 'button2' },
+    { title: 'My third button', key: 'button3' },
+  ]
+}).then((anwser) => {
   //Do something with the anwser corresponding to the key of the clicked button
 })
 ```
@@ -54,7 +58,14 @@ There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 You can create a fully personalized snackbar with the following method :
 ```js
 //message, timeout, level, variant, rounded, position
-this.$notify.create("My snackbar message", 2000, 'success', 'outlined', false, 'top right')
+this.$notify.create({
+  text: "My snackbar message",
+  timeout: 2000,
+  level: 'success',
+  variant: 'outlined',
+  rounded: false,
+  location: 'top right'
+})
 .then(() => {
   //Do something with the anwser corresponding to the key of the clicked button
 })

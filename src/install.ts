@@ -2,7 +2,7 @@ import { App, Plugin } from 'vue';
 import { initDialogsContext } from './dialogs';
 import { initSnackbarContext } from './snackbars';
 
-export const Dialogs: Plugin = {
+export const Vuetify3Dialogs: Plugin = {
   install(app: App, options: { vuetify: Plugin }) {
     if (!options) {
       console.warn('Dialogs plugin requires options');

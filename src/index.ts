@@ -1,4 +1,4 @@
-import { DialogButton } from 'dialogs';
-import { Dialogs } from 'install';
+import { Vuetify3Dialogs } from 'install';
+import { CreateDialogOptions, CreateNotifyOptions, DialogButton, Level } from 'types';
 
-export { DialogButton, Dialogs };
+export { CreateDialogOptions, CreateNotifyOptions, DialogButton, Level, Vuetify3Dialogs };
