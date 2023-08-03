@@ -42,7 +42,7 @@ this.$dialog.create({
 ```js
 this.$dialog.confirm("My title", "My dialog message", 'warning', 'Cancel', 'Confirm')
 .then((anwser) => {
-  //Do something with the anwser corresponding to the key of the clicked button
+  //Do something with the boolean anwser
 })
 ```
 
