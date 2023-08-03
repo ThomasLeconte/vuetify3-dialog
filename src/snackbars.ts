@@ -3,19 +3,19 @@ import Snackbar from './components/Snackbar.vue';
 
 export function initSnackbarContext(app: App, options: { vuetify: Plugin }) {
   function warn(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
-    return createSnackbar(text, timeout, 'warning', variant, rounded);
+    return create(text, timeout, 'warning', variant, rounded);
   }
   function error(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
-    return createSnackbar(text, timeout, 'error', variant, rounded);
+    return create(text, timeout, 'error', variant, rounded);
   }
   function info(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
-    return createSnackbar(text, timeout, 'info', variant, rounded);
+    return create(text, timeout, 'info', variant, rounded);
   }
   function success(text: string, timeout: number = 5000, variant?: string, rounded: string | boolean = false) {
-    return createSnackbar(text, timeout, 'success', variant, rounded);
+    return create(text, timeout, 'success', variant, rounded);
   }
 
-  function createSnackbar(
+  function create(
     text: string,
     timeout?: number,
     level?: string,
@@ -56,8 +56,8 @@ export function initSnackbarContext(app: App, options: { vuetify: Plugin }) {
     }
   }
 
-  app.config.globalProperties.$snackbar = {
-    createSnackbar,
+  app.config.globalProperties.$notify = {
+    create,
     warn,
     error,
     info,

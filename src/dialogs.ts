@@ -10,22 +10,34 @@ export type DialogButton = {
 
 export function initDialogsContext(app: App, options: { vuetify: Plugin }) {
   function warn(text: string, title?: string) {
-    return createDialog(title || 'Warning', text, [{ key: 'ok', title: 'OK', color: 'warning' }], 'warning');
+    return create(title || 'Warning', text, [{ key: 'ok', title: 'OK', color: 'warning' }], 'warning');
   }
 
   function error(text: string, title?: string) {
-    return createDialog(title || 'Error', text, [{ key: 'ok', title: 'OK', color: 'error' }], 'error');
+    return create(title || 'Error', text, [{ key: 'ok', title: 'OK', color: 'error' }], 'error');
   }
 
   function info(text: string, title?: string) {
-    return createDialog(title || 'Info', text, [{ key: 'ok', title: 'OK', color: 'info' }], 'info');
+    return create(title || 'Info', text, [{ key: 'ok', title: 'OK', color: 'info' }], 'info');
   }
 
   function success(text: string, title?: string) {
-    return createDialog(title || 'Success', text, [{ key: 'ok', title: 'OK', color: 'success' }], 'success');
+    return create(title || 'Success', text, [{ key: 'ok', title: 'OK', color: 'success' }], 'success');
   }
 
-  function createDialog(title: string, text: string, buttons?: DialogButton[], level?: string) {
+  function confirm(title: string, text: string, level?: string, cancelText?: string, confirmationText?: string) {
+    return create(
+      title,
+      text,
+      [
+        { key: 'cancel', title: cancelText || 'Cancel' },
+        { key: 'confirm', title: confirmationText || 'Confirm', color: 'primary' },
+      ],
+      level,
+    );
+  }
+
+  function create(title: string, text: string, buttons?: DialogButton[], level?: string) {
     try {
       const div = document.createElement('div');
 
@@ -60,7 +72,8 @@ export function initDialogsContext(app: App, options: { vuetify: Plugin }) {
   }
 
   app.config.globalProperties.$dialog = {
-    createDialog,
+    create,
+    confirm,
     warn,
     error,
     info,

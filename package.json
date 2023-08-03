@@ -30,7 +30,6 @@
   "author": "ThomasLeconte",
   "license": "ISC",
   "devDependencies": {
-    "npm": "^9.8.1",
     "prettier": "^3.0.0",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-typescript2": "^0.35.0",
