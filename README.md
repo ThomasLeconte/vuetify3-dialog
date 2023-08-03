@@ -1,8 +1,8 @@
-# Vuetify 3 Dialogs
+# Vuetify 3 Dialog
 Light Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 
 ## Install it
-First, run `npm install vuetify3-dialogs`.  
+First, run `npm install vuetify3-dialog`.  
 **⚠️You must have Vuetify installed on your project. If you don't have installed yet, please follow this link : [Install Vuetify](https://vuetifyjs.com/en/getting-started/installation/)**  
 
 Then, install this plugin in your app entry point (main.js or main.ts) like following :
@@ -12,7 +12,7 @@ Then, install this plugin in your app entry point (main.js or main.ts) like foll
 import { createApp } from 'vue'
 import App from './App.vue'
 import vuetifyInstance from './plugins/vuetify' //Or wherever you have your vuetify instance
-import Vuetify3Dialogs from 'vuetify3-dialogs'
+import Vuetify3Dialog from 'vuetify3-dialog'
 
 const app = createApp(App)
 app.use(Vuetify3Dialogs, { vuetify: vuetifyInstance }) //You must pass your vuetify instance as an option

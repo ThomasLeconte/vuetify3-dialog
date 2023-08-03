@@ -44,8 +44,8 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
       title,
       text,
       buttons: [
-        { key: 'cancel', title: cancelText || 'Cancel' },
-        { key: 'confirm', title: confirmationText || 'Confirm', color: 'primary' },
+        { key: false, title: cancelText || 'Cancel' },
+        { key: true, title: confirmationText || 'Confirm', color: 'primary' },
       ],
       level,
     });
@@ -68,7 +68,7 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
           text: options.text,
           buttons: options.buttons,
           level: options.level,
-          onCloseDialog: (value: any) => {
+          onCloseDialog: (value: string | boolean) => {
             resolve(value);
             _app.unmount();
             document.body.removeChild(div);
@@ -81,7 +81,7 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
         _app.mount(div);
       });
     } catch (err: any) {
-      console.error(`[Dialogs] ${err.message} [${err.stack}]`);
+      console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);
     }
   }
 
@@ -109,6 +109,7 @@ function validateButton(button: any, index: number) {
   }
 }
 
-function isNotEmptyAndNotNull(value: string): boolean {
-  return value !== undefined && value !== null && value.trim().length > 0 && value !== '';
+function isNotEmptyAndNotNull(value: string | boolean): boolean {
+  if (value === undefined || value === null) return false;
+  return typeof value === 'boolean' ? true : value.trim().length > 0 && value !== '';
 }

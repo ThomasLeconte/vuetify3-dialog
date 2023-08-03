@@ -4,12 +4,12 @@
   "description": "Vue 3 & Vuetify 3 plugin to create dialogs and toasts with Promises ",
   "keywords": ["vue", "vuetify", "dialogs", "promises", "vuetify dialogs", "snackbars", "toasts", "confirm"],
   "author": "ThomasLeconte",
-  "homepage": "https://github.com/ThomasLeconte/vuetify3-dialogs/blob/master/README.md",
+  "homepage": "https://github.com/ThomasLeconte/vuetify3-dialog/blob/master/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ThomasLeconte/vuetify3-dialogs"
+    "url": "https://github.com/ThomasLeconte/vuetify3-dialog"
   },
-  "bugs": "https://github.com/ThomasLeconte/vuetify3-dialogs/issues",
+  "bugs": "https://github.com/ThomasLeconte/vuetify3-dialog/issues",
   "license": "ISC",
   "main": "lib/index.js",
   "type": "module",

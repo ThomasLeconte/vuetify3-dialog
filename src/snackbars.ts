@@ -46,7 +46,7 @@ export function initSnackbarContext(app: App, pluginOptions: { vuetify: Plugin }
         _app.mount(div);
       });
     } catch (err: any) {
-      console.error(`[Dialogs] ${err.message} [${err.stack}]`);
+      console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);
     }
   }
 

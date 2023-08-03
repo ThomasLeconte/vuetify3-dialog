@@ -1,5 +1,5 @@
 export type DialogButton = {
-  key: string;
+  key: string | boolean;
   title: string;
   color?: string;
   variant?: string;

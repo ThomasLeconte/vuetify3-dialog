@@ -23,7 +23,7 @@ export default defineComponent({
       required: true
     },
     buttons: {
-      type: Array as () => { key: string, title: string, value: string, color?: string, variant?: string }[],
+      type: Array as () => { key: string | boolean, title: string, value: string, color?: string, variant?: string }[],
     },
     icon: {
       type: String,
@@ -66,7 +66,7 @@ export default defineComponent({
     }
   },
   methods: {
-    close(value: string){
+    close(value: string | boolean){
       this.showDialog = false
       this.$emit('closeDialog', value)
     }
