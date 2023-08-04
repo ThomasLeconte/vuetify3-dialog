@@ -12,10 +12,10 @@ Then, install this plugin in your app entry point (main.js or main.ts) like foll
 import { createApp } from 'vue'
 import App from './App.vue'
 import vuetifyInstance from './plugins/vuetify' //Or wherever you have your vuetify instance
-import Vuetify3Dialog from 'vuetify3-dialog'
+import {Vuetify3Dialog} from 'vuetify3-dialog'
 
 const app = createApp(App)
-app.use(Vuetify3Dialogs, { vuetify: vuetifyInstance }) //You must pass your vuetify instance as an option
+app.use(Vuetify3Dialog, { vuetify: vuetifyInstance }) //You must pass your vuetify instance as an option
 app.mount('#app')
 ```
 
@@ -32,7 +32,10 @@ this.$dialog.create({
     { title: 'My first button', key: 'button1' },
     { title: 'My second button', key: 'button2' },
     { title: 'My third button', key: 'button3' },
-  ]
+  ],
+  cardOptions: {
+    //any v-card api option
+  }
 }).then((anwser) => {
   //Do something with the anwser corresponding to the key of the clicked button
 })
@@ -48,7 +51,11 @@ this.$dialog.confirm("My title", "My dialog message", 'warning', 'Cancel', 'Conf
 
 You can also create a simple dialog with a message and a title, by precizing level of severity :
 ```js
-this.$dialog.info("My title", "My dialog message").then(() => {
+this.$dialog.info(
+  "My dialog message",
+  "My title", //optional
+  { width: '500px'} //optional v-card api option
+).then(() => {
   //Do something when the user close the dialog
 })
 ```
@@ -60,11 +67,11 @@ You can create a fully personalized snackbar with the following method :
 //message, timeout, level, variant, rounded, position
 this.$notify.create({
   text: "My snackbar message",
-  timeout: 2000,
   level: 'success',
-  variant: 'outlined',
-  rounded: false,
-  location: 'top right'
+  location: 'top right',
+  notifyOptions: {
+    //any v-snackbar api option
+  }
 })
 .then(() => {
   //Do something with the anwser corresponding to the key of the clicked button
@@ -73,7 +80,10 @@ this.$notify.create({
 
 You can also create a simple snackbar with a message and a title, by precizing level of severity :
 ```js
-this.$notify.info("My snackbar message").then(() => {
+this.$notify.info(
+  "My snackbar message",
+  { variant: 'outlined' } // any v-snackbar api option
+).then(() => {
   //Do something when the user close the snackbar
 })
 ```

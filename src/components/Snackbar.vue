@@ -31,6 +31,10 @@ export default defineComponent({
     level: {
       type: String as () => 'info' | 'warning' | 'error' | 'success',
       default: 'info'
+    },
+    notifyOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
   watch: {
@@ -48,6 +52,7 @@ export default defineComponent({
 
 <template>
   <VSnackbar
+    v-bind="notifyOptions"
     v-model="showSnackbar"
     :timeout="timeout"
     :variant="variant"

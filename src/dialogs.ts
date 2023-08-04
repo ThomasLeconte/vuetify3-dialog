@@ -3,43 +3,54 @@ import { App, Plugin, createApp } from 'vue';
 import Dialog from './components/Dialog.vue';
 
 export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin }) {
-  function warn(text: string, title?: string) {
+  function warn(text: string, title?: string, cardOptions?: any) {
     return create({
       title: title || 'Warning',
       text,
       buttons: [{ key: 'ok', title: 'OK', color: 'warning' }],
       level: 'warning',
+      cardOptions,
     });
   }
 
-  function error(text: string, title?: string) {
+  function error(text: string, title?: string, cardOptions?: any) {
     return create({
       title: title || 'Error',
       text,
       buttons: [{ key: 'ok', title: 'OK', color: 'error' }],
       level: 'error',
+      cardOptions,
     });
   }
 
-  function info(text: string, title?: string) {
+  function info(text: string, title?: string, cardOptions?: any) {
     return create({
       title: title || 'Info',
       text,
       buttons: [{ key: 'ok', title: 'OK', color: 'info' }],
       level: 'info',
+      cardOptions,
     });
   }
 
-  function success(text: string, title?: string) {
+  function success(text: string, title?: string, cardOptions?: any) {
     return create({
       title: title || 'Success',
       text,
       buttons: [{ key: 'ok', title: 'OK', color: 'success' }],
       level: 'success',
+      cardOptions,
     });
   }
 
-  function confirm(title: string, text: string, level?: Level, cancelText?: string, confirmationText?: string) {
+  function confirm(
+    title: string,
+    text: string,
+    level?: Level,
+    cancelText?: string,
+    confirmationText?: string,
+    cardOptions?: any,
+  ) {
     return create({
       title,
       text,
@@ -48,6 +59,7 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
         { key: true, title: confirmationText || 'Confirm', color: 'primary' },
       ],
       level,
+      cardOptions,
     });
   }
 
@@ -68,6 +80,11 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
           text: options.text,
           buttons: options.buttons,
           level: options.level,
+          cardOptions: {
+            ...options.cardOptions,
+            location: options.cardOptions?.location || 'center center',
+            width: options.cardOptions?.width || '400px',
+          },
           onCloseDialog: (value: string | boolean) => {
             resolve(value);
             _app.unmount();

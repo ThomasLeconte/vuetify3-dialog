@@ -12,13 +12,12 @@ export type CreateDialogOptions = {
   text: string;
   buttons?: DialogButton[];
   level?: Level;
+  cardOptions?: any;
 };
 
 export type CreateNotifyOptions = {
   text: string;
-  timeout?: number;
   level?: string;
-  variant?: string;
-  rounded?: string | boolean;
   location?: string;
+  notifyOptions?: any;
 };
