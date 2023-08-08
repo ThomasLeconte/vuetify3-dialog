@@ -15,7 +15,11 @@ export const Vuetify3Dialog: Plugin = {
       return;
     }
 
-    initDialogsContext(app, options);
-    initSnackbarContext(app, options);
+    try {
+      initDialogsContext(app, options);
+      initSnackbarContext(app, options);
+    } catch(err: any) {
+      console.error(`[Vuetify3Dialog]  {err.message} [${err.stack}]`);
+    }
   },
 };
