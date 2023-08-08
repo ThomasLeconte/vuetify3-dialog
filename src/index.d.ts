@@ -38,6 +38,29 @@ type PluginOptions = {
   };
 };
 
+//SFC dialogs methods
+export function createDialog(options: CreateDialogOptions): Promise<string>;
+export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function errorDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function infoDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function successDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function confirm(
+  title: string,
+  text: string,
+  level?: Level,
+  cancelText?: string,
+  confirmationText?: string,
+  cardOptions?: VCard['$props'],
+): Promise<boolean>;
+
+//SFC snackbars methods
+export function createNotification(options: CreateNotifyOptions): Promise<string>;
+export function notifyWarning(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifyError(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifyInfo(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifySuccess(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+
+//Vue augmented module declaration
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $dialog: {

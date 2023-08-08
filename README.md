@@ -93,3 +93,21 @@ this.$notify.info(
 })
 ```
 There is 4 levels of severity : `info`, `success`, `warning` and `error`.
+
+### SFC compatibility
+If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  
+```html
+<script setup>
+import { createDialog, warnDialog, confirmDialog } from 'vuetify3-dialog'
+import { createNotification, notifySuccess } from 'vuetify3-dialog'
+
+if(true){
+  createDialog({ title: "My title", text: "My dialog message" })
+  .then((anwser) => {
+    //Do something with the anwser corresponding to the key of the clicked button
+  })
+
+  notifySuccess("My snackbar message")
+}
+</script>
+```
