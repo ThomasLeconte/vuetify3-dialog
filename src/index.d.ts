@@ -1,4 +1,7 @@
 import type { App, Plugin } from 'vue';
+import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
+import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
+import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 
 type Level = 'warning' | 'error' | 'info' | 'success';
 
@@ -14,13 +17,25 @@ type CreateDialogOptions = {
   text: string;
   buttons?: DialogButton[];
   level?: Level;
+  cardOptions?: VCard['$props'];
 };
 
 type CreateNotifyOptions = {
   text: string;
   level?: string;
   location?: string;
-  notifyOptions?: any;
+  notifyOptions?: VSnackbar['$props'];
+};
+
+type PluginOptions = {
+  vuetify: Plugin;
+  defaults?: {
+    dialog?: {
+      component?: VDialog['$props'];
+      card?: VCard['$props'];
+    };
+    notify?: VSnackbar['$props'];
+  };
 };
 
 declare module '@vue/runtime-core' {
@@ -52,7 +67,7 @@ declare module '@vue/runtime-core' {
 }
 
 type Vuetify3DialogsPlugin = {
-  install(app: App, options: { vuetify: Plugin }): void;
+  install(app: App, options: PluginOptions): void;
 };
 
 export const Vuetify3Dialog: Vuetify3DialogsPlugin;

@@ -36,6 +36,10 @@ export default defineComponent({
     cardOptions: {
       type: Object,
       default: () => ({})
+    },
+    dialogOptions: {
+      type: Object,
+      default: () => ({})
     }
   },
   data(){
@@ -80,7 +84,7 @@ export default defineComponent({
 
 
 <template>
-  <VDialog v-model="showDialog">
+  <VDialog v-model="showDialog" v-bind="dialogOptions">
     <VCard v-bind="cardOptions">
       <VCardTitle class="d-flex align-center"><VIcon :color="_color" class="mr-2">{{_icon}}</VIcon>{{title}}</VCardTitle>
       <VCardText>{{text}}</VCardText>

@@ -1,8 +1,8 @@
-import { CreateNotifyOptions } from 'types';
-import { App, Plugin, createApp } from 'vue';
+import { CreateNotifyOptions, PluginOptions } from 'types';
+import { App, createApp } from 'vue';
 import Snackbar from './components/Snackbar.vue';
 
-export function initSnackbarContext(app: App, pluginOptions: { vuetify: Plugin }) {
+export function initSnackbarContext(app: App, pluginOptions: PluginOptions) {
   function warn(text: string, notifyOptions?: any) {
     return create({ text, level: 'warning', notifyOptions });
   }
@@ -27,7 +27,7 @@ export function initSnackbarContext(app: App, pluginOptions: { vuetify: Plugin }
           text: options.text,
           level: options.level,
           location: options.location,
-          notifyOptions: options.notifyOptions,
+          notifyOptions: options.notifyOptions || pluginOptions.defaults?.notify || undefined,
           onCloseSnackbar: () => {
             resolve(true);
             _app.unmount();

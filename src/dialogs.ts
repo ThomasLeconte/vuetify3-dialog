@@ -1,8 +1,8 @@
-import { CreateDialogOptions, Level } from 'types';
-import { App, Plugin, createApp } from 'vue';
+import { CreateDialogOptions, Level, PluginOptions } from 'types';
+import { App, createApp } from 'vue';
 import Dialog from './components/Dialog.vue';
 
-export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin }) {
+export function initDialogsContext(app: App, pluginOptions: PluginOptions) {
   function warn(text: string, title?: string, cardOptions?: any) {
     return create({
       title: title || 'Warning',
@@ -75,16 +75,18 @@ export function initDialogsContext(app: App, pluginOptions: { vuetify: Plugin })
       }
 
       return new Promise((resolve, reject) => {
+        console.log(pluginOptions.defaults?.dialog?.card);
         const _app = createApp(Dialog, {
           title: options.title,
           text: options.text,
           buttons: options.buttons,
           level: options.level,
-          cardOptions: {
-            ...options.cardOptions,
-            location: options.cardOptions?.location || 'center center',
-            width: options.cardOptions?.width || '400px',
-          },
+          dialogOptions: pluginOptions.defaults?.dialog?.component || undefined,
+          cardOptions: options.cardOptions ||
+            pluginOptions.defaults?.dialog?.card || {
+              location: 'center center',
+              width: '400px',
+            },
           onCloseDialog: (value: string | boolean) => {
             resolve(value);
             _app.unmount();
