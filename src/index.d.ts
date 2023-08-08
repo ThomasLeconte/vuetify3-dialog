@@ -1,4 +1,7 @@
 import type { App, Plugin } from 'vue';
+import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
+import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
+import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 
 type Level = 'warning' | 'error' | 'info' | 'success';
 
@@ -14,15 +17,50 @@ type CreateDialogOptions = {
   text: string;
   buttons?: DialogButton[];
   level?: Level;
+  cardOptions?: VCard['$props'];
 };
 
 type CreateNotifyOptions = {
   text: string;
   level?: string;
   location?: string;
-  notifyOptions?: any;
+  notifyOptions?: VSnackbar['$props'];
 };
 
+type PluginOptions = {
+  vuetify: Plugin;
+  defaults?: {
+    dialog?: {
+      component?: VDialog['$props'];
+      card?: VCard['$props'];
+    };
+    notify?: VSnackbar['$props'];
+  };
+};
+
+//SFC dialogs methods
+export function createDialog(options: CreateDialogOptions): Promise<string>;
+export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function errorDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function infoDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function successDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function confirm(
+  title: string,
+  text: string,
+  level?: Level,
+  cancelText?: string,
+  confirmationText?: string,
+  cardOptions?: VCard['$props'],
+): Promise<boolean>;
+
+//SFC snackbars methods
+export function createNotification(options: CreateNotifyOptions): Promise<string>;
+export function notifyWarning(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifyError(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifyInfo(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+export function notifySuccess(text: string, notifyOptions?: VSnackbar['$props']): Promise<string>;
+
+//Vue augmented module declaration
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $dialog: {
@@ -52,7 +90,7 @@ declare module '@vue/runtime-core' {
 }
 
 type Vuetify3DialogsPlugin = {
-  install(app: App, options: { vuetify: Plugin }): void;
+  install(app: App, options: PluginOptions): void;
 };
 
 export const Vuetify3Dialog: Vuetify3DialogsPlugin;
