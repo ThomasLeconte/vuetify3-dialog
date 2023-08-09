@@ -1,85 +1,75 @@
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { computed, defineComponent, reactive, ref } from "vue";
 import { VIcon, VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog } from 'vuetify/lib/components/index.mjs'
 
-export default defineComponent({
-  name: 'Dialog',
-  components: {
-    VIcon,
-    VCard,
-    VCardTitle,
-    VCardText,
-    VCardActions,
-    VBtn,
-    VDialog
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
   },
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    buttons: {
-      type: Array as () => { key: string | boolean, title: string, value: string, color?: string, variant?: string }[],
-    },
-    icon: {
-      type: String,
-      default: ''
-    },
-    level: {
-      type: String as () => 'info' | 'warning' | 'error' | 'success',
-      default: 'info'
-    },
-    cardOptions: {
-      type: Object,
-      default: () => ({})
-    },
-    dialogOptions: {
-      type: Object,
-      default: () => ({})
-    }
+  text: {
+    type: String,
+    required: true
   },
-  data(){
-    return {
-      showDialog: true
-    }
+  buttons: {
+    type: Array as () => { key: string | boolean, title: string, value: string, color?: string, variant?: string }[],
   },
-  computed: {
-    _buttons(){
-      if(this.buttons && this.buttons.length > 0) return this.buttons
-      else return [
-        { key: 'cancel', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
-        { key: 'ok', title: 'OK', value: 'ok', color: this.level, variant: 'tonal' }
-      ]
-    },
-    _icon(){
-      switch (this.level) {
-        case 'info':
-          return 'mdi-information'
-        case 'warning':
-          return 'mdi-alert'
-        case 'error':
-          return 'mdi-alert-circle'
-        case 'success':
-          return 'mdi-check-circle'
-        default:
-          return 'mdi-information'
-      }
-    },
-    _color(){
-      return this.level === 'info' ? 'primary' : this.level
-    }
+  icon: {
+    type: String,
+    default: ''
   },
-  methods: {
-    close(value: string | boolean){
-      this.showDialog = false
-      this.$emit('closeDialog', value)
-    }
+  level: {
+    type: String as () => 'info' | 'warning' | 'error' | 'success',
+    default: 'info'
+  },
+  cardOptions: {
+    type: Object,
+    default: () => ({})
+  },
+  dialogOptions: {
+    type: Object,
+    default: () => ({})
   }
 })
+
+// ------- EVENTS -------
+const emit = defineEmits(['closeDialog'])
+
+// ------- DATA -------
+let showDialog = ref(true)
+
+// ------- COMPUTED -------
+const _buttons = computed(() => {
+  if(props.buttons && props.buttons.length > 0) return props.buttons
+  else return [
+    { key: 'cancel', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
+    { key: 'ok', title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
+  ]
+})
+
+const _icon = computed(() => {
+  switch (props.level) {
+    case 'info':
+      return 'mdi-information'
+    case 'warning':
+      return 'mdi-alert'
+    case 'error':
+      return 'mdi-alert-circle'
+    case 'success':
+      return 'mdi-check-circle'
+    default:
+      return 'mdi-information'
+  }
+})
+
+const _color = computed(() => {
+  return props.level === 'info' ? 'primary' : props.level
+})
+
+function close(value: string | boolean){
+  showDialog.value = false
+  emit('closeDialog', value)
+}
 </script>
 
 
