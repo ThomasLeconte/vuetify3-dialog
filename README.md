@@ -66,6 +66,10 @@ this.$dialog.info(
 ```
 There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 
+__Usefull links:__
+- [v-card api](https://vuetifyjs.com/en/api/v-card/)  
+- [v-dialog api](https://vuetifyjs.com/en/api/v-dialog/)   
+
 ### Snackbars
 You can create a fully personalized snackbar with the following method :
 ```js
@@ -94,6 +98,9 @@ this.$notify.info(
 ```
 There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 
+__Usefull links:__
+- [v-snackbar api](https://vuetifyjs.com/en/api/v-snackbar/)
+
 ### SFC compatibility
 If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  
 ```html
@@ -111,3 +118,11 @@ if(true){
 }
 </script>
 ```
+
+## Developers
+If you want to contribute to this project, you can clone it and run `npm install` to install dependencies.  
+
+Then, you need to test your changes. A demo project is located at `cypress/test-server` of this repository. You can launch it with `npm run start-test-server`.    
+If you have the following error : <span style="color: #e74c3c">[vite] Internal server error: Failed to resolve entry for package "vuetify3-dialog". The package may have incorrect main/module/exports specified in its package.json.</span>, make sure you have run `npm run build` before to build the plugin and make it available for the demo project.  
+
+Finally, when you will have finish your changes, make sure all tests are passing with `npm run test`, thanks in advance !

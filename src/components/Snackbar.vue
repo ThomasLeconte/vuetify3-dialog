@@ -7,25 +7,13 @@ const props = defineProps({
     type: String,
     required: true
   },
-  variant: {
-    type: String,
-    default: 'elevated'
-  },
-  rounded: {
-    type: String,
-    required: false
-  },
-  timeout: {
-    type: Number,
-    default: 4000
+  level: {
+    type: String as () => 'info' | 'warning' | 'error' | 'success',
+    default: 'info'
   },
   location: {
     type: String,
     default: 'top right'
-  },
-  level: {
-    type: String as () => 'info' | 'warning' | 'error' | 'success',
-    default: 'info'
   },
   notifyOptions: {
     type: Object,
@@ -49,10 +37,7 @@ watch(() => showSnackbar, (val) => {
   <VSnackbar
     v-bind="notifyOptions"
     v-model="showSnackbar"
-    :timeout="timeout"
-    :variant="variant"
     :color="level"
-    :rounded="rounded"
     :location="location"
     :dark="level === 'warning' || level === 'error'"
   >

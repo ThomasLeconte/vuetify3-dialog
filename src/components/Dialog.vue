@@ -66,9 +66,9 @@ const _color = computed(() => {
   return props.level === 'info' ? 'primary' : props.level
 })
 
-function close(value: string | boolean){
+function close(buttonKey: string | boolean){
   showDialog.value = false
-  emit('closeDialog', value)
+  emit('closeDialog', buttonKey)
 }
 </script>
 

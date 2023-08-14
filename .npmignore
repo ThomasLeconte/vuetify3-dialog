@@ -1,4 +1,6 @@
 src
+cypress
+cypress.config.ts
 tsconfig.json
 tslint.json
 .prettierrc

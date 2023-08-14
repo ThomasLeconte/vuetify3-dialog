@@ -74,8 +74,8 @@ export function confirmDialog(
     title,
     text,
     buttons: [
-      { key: false, title: cancelText || 'Cancel' },
-      { key: true, title: confirmationText || 'Confirm', color: 'primary' },
+      { key: false, title: cancelText || 'Cancel', color: 'grey' },
+      { key: true, title: confirmationText || 'Confirm', color: 'warning' },
     ],
     level,
     cardOptions,
