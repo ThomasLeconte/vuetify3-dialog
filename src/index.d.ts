@@ -36,10 +36,30 @@ type PluginOptions = {
 
 //SFC dialogs methods
 export function createDialog(options: CreateDialogOptions): Promise<string>;
-export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
-export function errorDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
-export function infoDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
-export function successDialog(text: string, title?: string, cardOptions?: VCard['$props']): Promise<string>;
+export function warnDialog(
+  text: string,
+  title?: string,
+  cardOptions?: VCard['$props'],
+  buttonOptions?: DialogButton,
+): Promise<string>;
+export function errorDialog(
+  text: string,
+  title?: string,
+  cardOptions?: VCard['$props'],
+  buttonOptions?: DialogButton,
+): Promise<string>;
+export function infoDialog(
+  text: string,
+  title?: string,
+  cardOptions?: VCard['$props'],
+  buttonOptions?: DialogButton,
+): Promise<string>;
+export function successDialog(
+  text: string,
+  title?: string,
+  cardOptions?: VCard['$props'],
+  buttonOptions?: DialogButton,
+): Promise<string>;
 export function confirm(
   title: string,
   text: string,
@@ -47,6 +67,8 @@ export function confirm(
   cancelText?: string,
   confirmationText?: string,
   cardOptions?: VCard['$props'],
+  cancelButtonOptions?: DialogButton,
+  confirmationButtonOptions?: DialogButton,
 ): Promise<boolean>;
 
 //SFC snackbars methods

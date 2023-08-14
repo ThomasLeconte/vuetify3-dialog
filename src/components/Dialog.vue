@@ -41,11 +41,11 @@ let showDialog = ref(true)
 
 // ------- COMPUTED -------
 const _buttons = computed(() => {
-  if(props.buttons && props.buttons.length > 0) return props.buttons as DialogButton[]
+  if(props.buttons && props.buttons.length > 0) return props.buttons
   else return [
     { key: 'cancel', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
     { key: 'ok', title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
-  ] as DialogButton[]
+  ]
 })
 
 const _icon = computed(() => {

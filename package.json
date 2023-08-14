@@ -1,6 +1,6 @@
 {
   "name": "vuetify3-dialog",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Vue 3 & Vuetify 3 plugin to create dialogs and toasts with Promises ",
   "keywords": [
     "vue",
@@ -31,7 +31,7 @@
   "scripts": {
     "test-server": "cd cypress/test-server && npm run dev",
     "e2e": "cypress run --browser chrome --headless --spec \"cypress/e2e/**/*.cy.ts\"",
-    "test": "start-server-and-test start-test-server http://localhost:3000 e2e",
+    "test": "start-server-and-test test-server http://localhost:3000 e2e",
     "build": "npm run format && npm run lint && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
