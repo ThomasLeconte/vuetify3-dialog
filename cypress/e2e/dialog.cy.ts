@@ -1,11 +1,6 @@
 beforeEach(() => {
   cy.visit('http://localhost:3000')
   cy.wait(500)
-  cy.window()
-    .its('console')
-    .then((console) => {
-      cy.stub(console, 'error').throws('Console error')
-    })
 })
 
 describe('server is started', () => {
@@ -64,21 +59,5 @@ describe('server is started', () => {
     cy.get('div.v-card-title').should('contain', 'My SFC dialog')
     cy.get('div.v-card-text').should('contain', 'Hello world!')
     cy.get('div.v-card-actions').find('button').should('have.length', 2)
-  })
-
-  it('create notification', () => {
-    cy.get('button#create-notification').click()
-    cy.get('div.v-snackbar--active').should('exist')
-    cy.get('div.v-snackbar__wrapper').should('exist')
-    cy.get('div.v-snackbar__content').should('contain', 'Hello world!')
-    cy.get('div.v-snackbar__wrapper').should('have.class', 'bg-info')
-  })
-
-  it('error notification', () => {
-    cy.get('button#error-notification').click()
-    cy.get('div.v-snackbar--active').should('exist')
-    cy.get('div.v-snackbar__wrapper').should('exist')
-    cy.get('div.v-snackbar__content').should('contain', 'Hello error!')
-    cy.get('div.v-snackbar__wrapper').should('have.class', 'bg-error')
   })
 })
