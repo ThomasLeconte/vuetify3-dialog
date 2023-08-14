@@ -1,4 +1,4 @@
-import { CreateDialogOptions, Level, PluginOptions } from 'types';
+import { CreateDialogOptions, DialogButton, Level, PluginOptions } from 'types';
 import { App, createApp } from 'vue';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import Dialog from './components/Dialog.vue';
@@ -22,41 +22,46 @@ export function initDialogsContext(app: App, _pluginOptions: PluginOptions) {
   };
 }
 
-export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props']) {
+export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props'], buttonOptions?: DialogButton) {
   return createDialog({
     title: title || 'Warning',
     text,
-    buttons: [{ key: 'ok', title: 'OK', color: 'warning' }],
+    buttons: [{ key: 'ok', title: 'OK', color: 'warning', ...buttonOptions }],
     level: 'warning',
     cardOptions,
   });
 }
 
-export function errorDialog(text: string, title?: string, cardOptions?: VCard['$props']) {
+export function errorDialog(text: string, title?: string, cardOptions?: VCard['$props'], buttonOptions?: DialogButton) {
   return createDialog({
     title: title || 'Error',
     text,
-    buttons: [{ key: 'ok', title: 'OK', color: 'error' }],
+    buttons: [{ key: 'ok', title: 'OK', color: 'error', ...buttonOptions }],
     level: 'error',
     cardOptions,
   });
 }
 
-export function infoDialog(text: string, title?: string, cardOptions?: VCard['$props']) {
+export function infoDialog(text: string, title?: string, cardOptions?: VCard['$props'], buttonOptions?: DialogButton) {
   return createDialog({
     title: title || 'Info',
     text,
-    buttons: [{ key: 'ok', title: 'OK', color: 'info' }],
+    buttons: [{ key: 'ok', title: 'OK', color: 'info', ...buttonOptions }],
     level: 'info',
     cardOptions,
   });
 }
 
-export function successDialog(text: string, title?: string, cardOptions?: VCard['$props']) {
+export function successDialog(
+  text: string,
+  title?: string,
+  cardOptions?: VCard['$props'],
+  buttonOptions?: DialogButton,
+) {
   return createDialog({
     title: title || 'Success',
     text,
-    buttons: [{ key: 'ok', title: 'OK', color: 'success' }],
+    buttons: [{ key: 'ok', title: 'OK', color: 'success', ...buttonOptions }],
     level: 'success',
     cardOptions,
   });
@@ -69,13 +74,15 @@ export function confirmDialog(
   cancelText?: string,
   confirmationText?: string,
   cardOptions?: VCard['$props'],
+  cancelButtonOptions?: DialogButton,
+  confirmationButtonOptions?: DialogButton,
 ) {
   return createDialog({
     title,
     text,
     buttons: [
-      { key: false, title: cancelText || 'Cancel', color: 'grey' },
-      { key: true, title: confirmationText || 'Confirm', color: 'warning' },
+      { key: false, title: cancelText || 'Cancel', color: 'grey', ...cancelButtonOptions },
+      { key: true, title: confirmationText || 'Confirm', color: 'warning', ...confirmationButtonOptions },
     ],
     level,
     cardOptions,

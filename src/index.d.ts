@@ -1,16 +1,12 @@
 import type { App, Plugin } from 'vue';
+import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 
 type Level = 'warning' | 'error' | 'info' | 'success';
 
-type DialogButton = {
-  key: string | boolean;
-  title: string;
-  color?: string;
-  variant?: string;
-};
+type DialogButton = Omit<Omit<VBtn['$props'], 'text'>, 'key'> & { title: string; key: string | boolean };
 
 type CreateDialogOptions = {
   title: string;

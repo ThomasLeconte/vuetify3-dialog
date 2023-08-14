@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { DialogButton } from "types";
 import { computed, defineComponent, reactive, ref } from "vue";
 import { VIcon, VCard, VCardTitle, VCardText, VCardActions, VBtn, VDialog } from 'vuetify/lib/components/index.mjs'
 
@@ -12,7 +13,7 @@ const props = defineProps({
     required: true
   },
   buttons: {
-    type: Array as () => { key: string | boolean, title: string, value: string, color?: string, variant?: string }[],
+    type: Array as () => any[],
   },
   icon: {
     type: String,
@@ -40,11 +41,11 @@ let showDialog = ref(true)
 
 // ------- COMPUTED -------
 const _buttons = computed(() => {
-  if(props.buttons && props.buttons.length > 0) return props.buttons
+  if(props.buttons && props.buttons.length > 0) return props.buttons as DialogButton[]
   else return [
     { key: 'cancel', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
     { key: 'ok', title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
-  ]
+  ] as DialogButton[]
 })
 
 const _icon = computed(() => {
@@ -81,9 +82,9 @@ function close(buttonKey: string | boolean){
       <VCardActions>
         <VBtn
           v-for="button in _buttons"
-          :key="button.value"
+          :key="button.key"
+          v-bind="button"
           :color="button.color || _color"
-          :variant="button.variant"
           @click="close(button.key)"
         >
           {{button.title}}

@@ -122,7 +122,7 @@ if(true){
 ## Developers
 If you want to contribute to this project, you can clone it and run `npm install` to install dependencies.  
 
-Then, you need to test your changes. A demo project is located at `cypress/test-server` of this repository. You can launch it with `npm run start-test-server`.    
+Then, you need to test your changes. A demo project is located at `cypress/test-server` of this repository. You can launch it with `npm run test-server`.    
 If you have the following error : <span style="color: #e74c3c">[vite] Internal server error: Failed to resolve entry for package "vuetify3-dialog". The package may have incorrect main/module/exports specified in its package.json.</span>, make sure you have run `npm run build` before to build the plugin and make it available for the demo project.  
 
 Finally, when you will have finish your changes, make sure all tests are passing with `npm run test`, thanks in advance !
