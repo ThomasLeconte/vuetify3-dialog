@@ -1,6 +1,14 @@
 # Vuetify 3 Dialog
 Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 
+## Summary
+- [Installation](#install-it)
+- [Usage](#usage)
+  - [Dialogs](#dialogs)
+  - [Snackbars](#snackbars)
+  - [SFC compatibility](#sfc-compatibility)
+- [Developers](#developers)
+
 ## Install it
 First, run `npm install vuetify3-dialog`.  
 **⚠️You must have Vuetify installed on your project. If you don't have installed yet, please follow this link : [Install Vuetify](https://vuetifyjs.com/en/getting-started/installation/)**  
@@ -34,12 +42,11 @@ this.$dialog.create({
   title: "My title",
   text: "My dialog message",
   buttons: [
-    { title: 'My first button', key: 'button1' },
-    { title: 'My second button', key: 'button2' },
-    { title: 'My third button', key: 'button3' },
+    { title: 'My first button', key: 'button1', /* any v-btn api option */ },
+    ...
   ],
   cardOptions: {
-    //any v-card api option
+    //any v-card api options
   }
 }).then((anwser) => {
   //Do something with the anwser corresponding to the key of the clicked button
@@ -59,7 +66,8 @@ You can also create a simple dialog with a message and a title, by precizing lev
 this.$dialog.info(
   "My dialog message",
   "My title", //optional
-  { width: '500px'} //optional v-card api option
+  { width: '500px'} //optional v-card api options,
+  { variant: 'outlined' } //optional v-btn api options
 ).then(() => {
   //Do something when the user close the dialog
 })
@@ -79,7 +87,7 @@ this.$notify.create({
   level: 'success',
   location: 'top right',
   notifyOptions: {
-    //any v-snackbar api option
+    //any v-snackbar api options
   }
 })
 .then(() => {
@@ -91,7 +99,7 @@ You can also create a simple snackbar with a message and a title, by precizing l
 ```js
 this.$notify.info(
   "My snackbar message",
-  { variant: 'outlined' } // any v-snackbar api option
+  { variant: 'outlined' } // any v-snackbar api options
 ).then(() => {
   //Do something when the user close the snackbar
 })
