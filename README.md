@@ -1,6 +1,14 @@
 # Vuetify 3 Dialog
 Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 
+## Summary
+- [Installation](#install-it)
+- [Usage](#usage)
+  - [Dialogs](#dialogs)
+  - [Snackbars](#snackbars)
+  - [SFC compatibility](#sfc-compatibility)
+- [Developers](#developers)
+
 ## Install it
 First, run `npm install vuetify3-dialog`.  
 **⚠️You must have Vuetify installed on your project. If you don't have installed yet, please follow this link : [Install Vuetify](https://vuetifyjs.com/en/getting-started/installation/)**  
@@ -34,12 +42,11 @@ this.$dialog.create({
   title: "My title",
   text: "My dialog message",
   buttons: [
-    { title: 'My first button', key: 'button1' },
-    { title: 'My second button', key: 'button2' },
-    { title: 'My third button', key: 'button3' },
+    { title: 'My first button', key: 'button1', /* any v-btn api option */ },
+    ...
   ],
   cardOptions: {
-    //any v-card api option
+    //any v-card api options
   }
 }).then((anwser) => {
   //Do something with the anwser corresponding to the key of the clicked button
@@ -59,12 +66,17 @@ You can also create a simple dialog with a message and a title, by precizing lev
 this.$dialog.info(
   "My dialog message",
   "My title", //optional
-  { width: '500px'} //optional v-card api option
+  { width: '500px'} //optional v-card api options,
+  { variant: 'outlined' } //optional v-btn api options
 ).then(() => {
   //Do something when the user close the dialog
 })
 ```
 There is 4 levels of severity : `info`, `success`, `warning` and `error`.
+
+__Usefull links:__
+- [v-card api](https://vuetifyjs.com/en/api/v-card/)  
+- [v-dialog api](https://vuetifyjs.com/en/api/v-dialog/)   
 
 ### Snackbars
 You can create a fully personalized snackbar with the following method :
@@ -75,7 +87,7 @@ this.$notify.create({
   level: 'success',
   location: 'top right',
   notifyOptions: {
-    //any v-snackbar api option
+    //any v-snackbar api options
   }
 })
 .then(() => {
@@ -87,12 +99,15 @@ You can also create a simple snackbar with a message and a title, by precizing l
 ```js
 this.$notify.info(
   "My snackbar message",
-  { variant: 'outlined' } // any v-snackbar api option
+  { variant: 'outlined' } // any v-snackbar api options
 ).then(() => {
   //Do something when the user close the snackbar
 })
 ```
 There is 4 levels of severity : `info`, `success`, `warning` and `error`.
+
+__Usefull links:__
+- [v-snackbar api](https://vuetifyjs.com/en/api/v-snackbar/)
 
 ### SFC compatibility
 If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  
@@ -111,3 +126,11 @@ if(true){
 }
 </script>
 ```
+
+## Developers
+If you want to contribute to this project, you can clone it and run `npm install` to install dependencies.  
+
+Then, you need to test your changes. A demo project is located at `cypress/test-server` of this repository. You can launch it with `npm run test-server`.    
+If you have the following error : <span style="color: #e74c3c">[vite] Internal server error: Failed to resolve entry for package "vuetify3-dialog". The package may have incorrect main/module/exports specified in its package.json.</span>, make sure you have run `npm run build` before to build the plugin and make it available for the demo project.  
+
+Finally, when you will have finish your changes, make sure all tests are passing with `npm run test`, thanks in advance !

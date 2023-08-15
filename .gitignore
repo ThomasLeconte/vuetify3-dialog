@@ -1,2 +1,4 @@
 /node_modules
 /lib
+/cypress/server-test/node_modules
+/cypress/videos

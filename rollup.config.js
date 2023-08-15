@@ -18,7 +18,7 @@ export default async function config (args) {
           compilerOptions: {
             declaration: false,
           },
-          include: null,
+          include: null
         },
       }),
       clear({

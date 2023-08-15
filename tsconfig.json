@@ -29,7 +29,11 @@
     /* Enable all strict type-checking options. */
     "strict": true,
     /* Skip type checking all .d.ts files. */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": [
+      "cypress",
+      "node"
+    ]
   },
   "include": [
     "src/**/*.ts",
@@ -38,6 +42,8 @@
     "src/**/*.vue"
   ],
   "exclude": [
+    "cypress.config.ts",
+    "**/cypress",
     "**/node_modules",
   ]
 }

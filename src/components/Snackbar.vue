@@ -1,52 +1,35 @@
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { defineComponent, ref, watch } from "vue";
 import { VSnackbar } from 'vuetify/lib/components/index.mjs'
 
-export default defineComponent({
-  name: "Snackbar",
-  components: {
-    VSnackbar
+const props = defineProps({
+  text: {
+    type: String,
+    required: true
   },
-  props: {
-    text: {
-      type: String,
-      required: true
-    },
-    variant: {
-      type: String,
-      default: 'elevated'
-    },
-    rounded: {
-      type: String,
-      required: false
-    },
-    timeout: {
-      type: Number,
-      default: 4000
-    },
-    location: {
-      type: String,
-      default: 'top right'
-    },
-    level: {
-      type: String as () => 'info' | 'warning' | 'error' | 'success',
-      default: 'info'
-    },
-    notifyOptions: {
-      type: Object,
-      default: () => ({})
-    }
+  level: {
+    type: String as () => 'info' | 'warning' | 'error' | 'success',
+    default: 'info'
   },
-  watch: {
-    showSnackbar(val){
-      if(!val) this.$emit('closeSnackbar')
-    }
+  location: {
+    type: String,
+    default: 'top right'
   },
-  data(){
-    return {
-      showSnackbar: true
-    }
-  },
+  notifyOptions: {
+    type: Object,
+    default: () => ({})
+  }
+})
+
+// ------- EVENTS -------
+const emit = defineEmits(['closeSnackbar'])
+
+// ------- DATA -------
+let showSnackbar = ref(true)
+
+// ------- WATCH -------
+watch(() => showSnackbar, (val) => {
+  if(!val) emit('closeSnackbar')
 })
 </script>
 
@@ -54,10 +37,7 @@ export default defineComponent({
   <VSnackbar
     v-bind="notifyOptions"
     v-model="showSnackbar"
-    :timeout="timeout"
-    :variant="variant"
     :color="level"
-    :rounded="rounded"
     :location="location"
     :dark="level === 'warning' || level === 'error'"
   >
