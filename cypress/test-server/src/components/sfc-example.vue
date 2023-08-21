@@ -1,7 +1,7 @@
 <template>
   <h1>SFC Example</h1>
-  <v-btn id="sfc-create-dialog" @click="_createDialog">Click me</v-btn>
-  <v-btn id="sfc-create-notification" @click="_createNotification">Click me</v-btn>
+  <v-btn id="sfc-create-dialog" @click="_createDialog">Dialog</v-btn>
+  <v-btn id="sfc-create-notification" @click="_createNotification">Notify</v-btn>
 </template>
 
 <script setup lang="ts">
