@@ -9,11 +9,17 @@ export default class BottomSheets extends Notifier {
   initContext(): void {
     this._app.config.globalProperties.$bottomSheet = {
       create: createBottomSheet,
+      createList: createBottomSheetList,
     };
   }
 }
 
-export function createList(items: VListItem['$props'][], options?: CreateBottomSheetOptions) {
+export function createBottomSheetList(items: VListItem['$props'][], options?: CreateBottomSheetOptions) {
+  items.forEach((item) => {
+    if (!isNotEmptyAndNotNull(item.title as any)) throw new Error('title is required for each item');
+    if (!isNotEmptyAndNotNull(item.value)) throw new Error('value is required for each item');
+  });
+
   return createBottomSheet({
     items,
     ...options,
@@ -34,8 +40,11 @@ export function createBottomSheet(options: CreateBottomSheetOptions) {
     const div = document.createElement('div');
     return new Promise((resolve, reject) => {
       const _app = createApp(BottomSheet, {
+        bottomSheetOptions: options?.bottomSheetOptions,
+        dialogOptions: options?.dialogOptions,
         items: options?.items,
-        bottomSheetOptions: options,
+        title: options?.title,
+        text: options?.text,
         onCloseBottomSheet: (value: string | boolean) => {
           resolve(value);
           _app.unmount();

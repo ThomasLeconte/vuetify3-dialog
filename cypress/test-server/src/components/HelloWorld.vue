@@ -31,7 +31,8 @@
         <div class="card">
           <h3 class="primary-text">Bottom sheets</h3>
           <div class="mt-5">
-            <v-btn id="create-bottomsheet" @click="createBottomsheet()">Create bottom-sheet</v-btn>
+            <v-btn id="create-bottomsheet-buttons-card" @click="createBottomsheet()">bottom-sheet card</v-btn>
+            <v-btn id="create-bottomsheet" @click="createBottomsheetList()">bottom-sheet list</v-btn>
           </div>
         </div>
       </div>
@@ -105,6 +106,17 @@ export default defineComponent({
             { key: 'button2', title: 'Button 2', variant: 'tonal', color: 'success' }
           ]
         }
+      }).then((value: any) => {
+        console.log(value)
+      })
+    },
+    createBottomsheetList(){
+      this.$bottomSheet.create({
+        items: [
+          { title: "Item 1", value: "item1" },
+          { title: "Item 2", value: "item2" },
+          { title: "Item 3", value: "item3" }
+        ]
       }).then((value: any) => {
         console.log(value)
       })

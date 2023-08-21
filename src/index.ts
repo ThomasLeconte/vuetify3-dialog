@@ -1,3 +1,4 @@
+import { createBottomSheet, createBottomSheetList } from 'BottomSheet';
 import { confirmDialog, createDialog, errorDialog, infoDialog, successDialog, warnDialog } from 'Dialog';
 import { Vuetify3Dialog } from 'install';
 import { createNotification, notifyError, notifyInfo, notifySuccess, notifyWarning } from 'Snackbar';
@@ -5,6 +6,8 @@ import { CreateDialogOptions, CreateNotifyOptions, DialogButton, Level } from 't
 
 export {
   confirmDialog,
+  createBottomSheet,
+  createBottomSheetList,
   createDialog,
   CreateDialogOptions,
   createNotification,

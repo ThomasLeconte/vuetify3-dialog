@@ -1,4 +1,5 @@
 import { Plugin } from 'vue';
+import { VBottomSheet } from 'vuetify/labs/VBottomSheet';
 import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
@@ -40,4 +41,5 @@ export type CreateBottomSheetOptions = {
   text?: string;
   items?: VListItem['$props'][];
   dialogOptions?: CreateDialogOptions;
+  bottomSheetOptions?: VBottomSheet['$props'];
 };

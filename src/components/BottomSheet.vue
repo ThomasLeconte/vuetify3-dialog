@@ -9,6 +9,10 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
+  dialogOptions: {
+    type: Object,
+    required: false
+  },
   items: {
     type: Array as () => any[],
     required: false
@@ -55,21 +59,24 @@ function close(value: string | boolean){
     v-model="showBottomSheet"
   >
 
-    <VCard v-if="!bottomSheetOptions.dialogOptions">
+    <VCard v-if="!dialogOptions">
       <VCardTitle v-if="title">{{title}}</VCardTitle>
       <VCardText v-if="text">{{ text }}</VCardText>
       <VList v-if="items">
-        <VListItem v-for="item in _items" :key="item.value">
-          {{ item.title }}
-        </VListItem>
+        <VListItem
+          v-for="item in _items"
+          :title="item.title"
+          :key="item.value"
+          @click="close(item.value)"
+        />
       </VList>
     </VCard>
 
     <Card
       v-else
-      v-bind="bottomSheetOptions.dialogOptions"
-      :title="bottomSheetOptions.dialogOptions.title"
-      :text="bottomSheetOptions.dialogOptions.text"
+      v-bind="dialogOptions"
+      :title="dialogOptions.title"
+      :text="dialogOptions.text"
       @buttonClicked="close"
     />
   </VBottomSheet>
