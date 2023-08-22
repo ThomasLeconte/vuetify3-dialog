@@ -163,6 +163,7 @@ If you want to use this plugin in an SFC component, some methods are available. 
 <script setup>
 import { createDialog, warnDialog, confirmDialog } from 'vuetify3-dialog'
 import { createNotification, notifySuccess } from 'vuetify3-dialog'
+import { createBottomSheet } from 'vuetify3-dialog'
 
 if(true){
   createDialog({ title: "My title", text: "My dialog message" })
@@ -170,7 +171,10 @@ if(true){
     //Do something with the anwser corresponding to the key of the clicked button
   })
 
-  notifySuccess("My snackbar message")
+  notifySuccess("My snackbar message").then(() => {})
+
+  createBottomSheet({ title: "My bottomsheet title", text: "My bottomsheet message" })
+  .then(() => {})
 }
 </script>
 ```
