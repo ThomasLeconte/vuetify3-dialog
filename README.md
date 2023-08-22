@@ -27,7 +27,7 @@ const app = createApp(App)
 app.use(Vuetify3Dialog, {
   vuetify: vuetifyInstance, //You must pass your vuetify instance as an option
   defaults: {
-    //You can pass default options for dialogs, dialog's card and snackbars here
+    //You can pass default options for dialogs, dialog's card, snackbars or bottom-sheets here
   }
 })
 app.mount('#app')
@@ -113,7 +113,7 @@ __Usefull links:__
 ### Bottom sheets
 
 > [!WARNING]  
-> ⚠ This feature require Vuetify 3.3.0 or higher
+> ⚠ This feature requires Vuetify 3.3.0 or higher
 
 You can create a fully personalized bottom sheet with a contained list or a card dialog. **To stay consistent, these two features cannot be used at same time.**  
 Here is an example with a list :
@@ -121,6 +121,9 @@ Here is an example with a list :
 this.$bottomSheet.create({
   title: "My title",
   text: "My bottom sheet message",
+  bottomSheetOptions: {
+    // any v-bottom-sheet api options
+  },
   items: [
     { title: "Item 1", value: "item1", ... /* any v-list-item api option */ },
     { title: "Item 2", value: "item2" },
@@ -134,8 +137,9 @@ this.$bottomSheet.create({
 Here is an example with a card :
 ```js
 this.$bottomSheet.create({
-  title: "My title",
-  text: "My bottom sheet message",
+  bottomSheetOptions: {
+    // any v-bottom-sheet api options
+  },
   dialogOptions: {
     //same arguments as $dialog.create()
     title: "My bottom-sheet card dialog",

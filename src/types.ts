@@ -14,6 +14,7 @@ export type PluginOptions = {
       card?: VCard['$props'];
     };
     notify?: VSnackbar['$props'];
+    bottomSheet?: VBottomSheet['$props'];
   };
 };
 

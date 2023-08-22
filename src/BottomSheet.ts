@@ -40,7 +40,8 @@ export function createBottomSheet(options: CreateBottomSheetOptions) {
     const div = document.createElement('div');
     return new Promise((resolve, reject) => {
       const _app = createApp(BottomSheet, {
-        bottomSheetOptions: options?.bottomSheetOptions,
+        bottomSheetOptions:
+          options?.bottomSheetOptions || PluginContext.getPluginOptions().defaults?.bottomSheet || undefined,
         dialogOptions: options?.dialogOptions,
         items: options?.items,
         title: options?.title,

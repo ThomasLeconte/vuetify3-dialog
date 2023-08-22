@@ -98,6 +98,7 @@ export default defineComponent({
     },
     createBottomsheet(){
       this.$bottomSheet.create({
+        bottomSheetOptions: { inset: true },
         dialogOptions: {
           title: "My bottom-sheet card dialog",
           text: "Hello world!",

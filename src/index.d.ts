@@ -1,4 +1,5 @@
 import type { App, Plugin } from 'vue';
+import { VBottomSheet } from 'vuetify/labs/VBottomSheet';
 import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
@@ -13,6 +14,7 @@ type PluginOptions = {
       card?: VCard['$props'];
     };
     notify?: VSnackbar['$props'];
+    bottomSheet?: VBottomSheet['$props'];
   };
 };
 
