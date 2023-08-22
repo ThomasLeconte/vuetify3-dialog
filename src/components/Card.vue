@@ -66,7 +66,7 @@ function close(buttonKey: string | boolean){
 </script>
 
 <template>
-  <VCard v-bind="cardOptions">
+  <VCard class="vuetify3-dialog-card" v-bind="cardOptions">
     <VCardTitle class="d-flex align-center"><VIcon :color="_color" class="mr-2">{{_icon}}</VIcon>{{title}}</VCardTitle>
     <VCardText>{{text}}</VCardText>
     <VCardActions>

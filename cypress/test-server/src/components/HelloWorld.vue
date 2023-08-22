@@ -31,8 +31,8 @@
         <div class="card">
           <h3 class="primary-text">Bottom sheets</h3>
           <div class="mt-5">
-            <v-btn id="create-bottomsheet-buttons-card" @click="createBottomsheet()">bottom-sheet card</v-btn>
-            <v-btn id="create-bottomsheet" @click="createBottomsheetList()">bottom-sheet list</v-btn>
+            <v-btn id="create-bottomsheet-card" @click="createBottomsheet()">bottom-sheet card</v-btn>
+            <v-btn id="create-bottomsheet-list" @click="createBottomsheetList()">bottom-sheet list</v-btn>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default defineComponent({
     createBottomsheet(){
       this.$bottomSheet.create({
         dialogOptions: {
-          title: "coucou",
+          title: "My bottom-sheet card dialog",
           text: "Hello world!",
           buttons: [
             { key: 'button1', title: 'Button 1', variant: 'outlined', color: 'error' },

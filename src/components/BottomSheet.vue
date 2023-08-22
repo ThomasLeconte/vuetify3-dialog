@@ -55,6 +55,7 @@ function close(value: string | boolean){
 <template>
 
   <VBottomSheet
+    class="vuetify3-dialog-bottom-sheet"
     v-bind="bottomSheetOptions"
     v-model="showBottomSheet"
   >

@@ -49,7 +49,11 @@ function close(buttonKey: string | boolean){
 
 
 <template>
-  <VDialog v-model="showDialog" v-bind="dialogOptions">
+  <VDialog
+    class="vuetify3-dialog-popup"
+    v-model="showDialog"
+    v-bind="dialogOptions"
+  >
     <Card
       v-bind="cardOptions"
       :title="title"

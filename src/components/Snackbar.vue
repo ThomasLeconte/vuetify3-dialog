@@ -35,6 +35,7 @@ watch(() => showSnackbar, (val) => {
 
 <template>
   <VSnackbar
+    class="vuetify3-dialog-snackbar"
     v-bind="notifyOptions"
     v-model="showSnackbar"
     :color="level"

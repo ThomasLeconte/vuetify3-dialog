@@ -6,6 +6,7 @@ Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars 
 - [Usage](#usage)
   - [Dialogs](#dialogs)
   - [Snackbars](#snackbars)
+  - [Bottom sheets](#bottom-sheets)
   - [SFC compatibility](#sfc-compatibility)
 - [Developers](#developers)
 
@@ -108,6 +109,49 @@ There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 
 __Usefull links:__
 - [v-snackbar api](https://vuetifyjs.com/en/api/v-snackbar/)
+
+### Bottom sheets
+
+> [!WARNING]  
+> ⚠ This feature require Vuetify 3.3.0 or higher
+
+You can create a fully personalized bottom sheet with a contained list or a card dialog. **To stay consistent, these two features cannot be used at same time.**  
+Here is an example with a list :
+```js
+this.$bottomSheet.create({
+  title: "My title",
+  text: "My bottom sheet message",
+  items: [
+    { title: "Item 1", value: "item1", ... /* any v-list-item api option */ },
+    { title: "Item 2", value: "item2" },
+    { title: "Item 3", value: "item3" }
+  ]
+}).then((anwser) => {
+  //Do something with the anwser corresponding to the value of the clicked item
+})
+```
+
+Here is an example with a card :
+```js
+this.$bottomSheet.create({
+  title: "My title",
+  text: "My bottom sheet message",
+  dialogOptions: {
+    //same arguments as $dialog.create()
+    title: "My bottom-sheet card dialog",
+    text: "Hello world!",
+    buttons: [
+      { title: 'My first button', key: 'button1', /* any v-btn api option */ },
+      ...
+    ]
+  }
+}).then((anwser) => {
+  //Do something with the anwser corresponding to the key of the clicked button
+})
+```
+
+
+
 
 ### SFC compatibility
 If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  

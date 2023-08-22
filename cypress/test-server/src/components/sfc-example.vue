@@ -2,7 +2,7 @@
   <h1>SFC Example</h1>
   <v-btn id="sfc-create-dialog" @click="_createDialog">Dialog</v-btn>
   <v-btn id="sfc-create-notification" @click="_createNotification">Notify</v-btn>
-  <v-btn id="sfc-create-notification" @click="_createBottomSheet">BottomSheet</v-btn>
+  <v-btn id="sfc-create-bottomsheet" @click="_createBottomSheet">BottomSheet</v-btn>
 </template>
 
 <script setup lang="ts">
