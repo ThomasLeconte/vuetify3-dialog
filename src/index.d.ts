@@ -121,6 +121,11 @@ declare module '@vue/runtime-core' {
       info: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
       success: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
     };
+
+    $bottomSheet: {
+      create: (options: CreateBottomSheetOptions) => Promise<string>;
+      createList: (items: VListItem['$props'][], options?: CreateBottomSheetOptions) => Promise<string>;
+    };
   }
 }
 
