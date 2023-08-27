@@ -6,6 +6,7 @@ Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars 
 - [Usage](#usage)
   - [Dialogs](#dialogs)
   - [Snackbars](#snackbars)
+  - [Bottom sheets](#bottom-sheets)
   - [SFC compatibility](#sfc-compatibility)
 - [Developers](#developers)
 
@@ -26,7 +27,7 @@ const app = createApp(App)
 app.use(Vuetify3Dialog, {
   vuetify: vuetifyInstance, //You must pass your vuetify instance as an option
   defaults: {
-    //You can pass default options for dialogs, dialog's card and snackbars here
+    //You can pass default options for dialogs, dialog's card, snackbars or bottom-sheets here
   }
 })
 app.mount('#app')
@@ -109,12 +110,60 @@ There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 __Usefull links:__
 - [v-snackbar api](https://vuetifyjs.com/en/api/v-snackbar/)
 
+### Bottom sheets
+
+> [!WARNING]  
+> ⚠ This feature requires Vuetify 3.3.0 or higher
+
+You can create a fully personalized bottom sheet with a contained list or a card dialog. **To stay consistent, these two features cannot be used at same time.**  
+Here is an example with a list :
+```js
+this.$bottomSheet.create({
+  title: "My title",
+  text: "My bottom sheet message",
+  bottomSheetOptions: {
+    // any v-bottom-sheet api options
+  },
+  items: [
+    { title: "Item 1", value: "item1", ... /* any v-list-item api option */ },
+    { title: "Item 2", value: "item2" },
+    { title: "Item 3", value: "item3" }
+  ]
+}).then((anwser) => {
+  //Do something with the anwser corresponding to the value of the clicked item
+})
+```
+
+Here is an example with a card :
+```js
+this.$bottomSheet.create({
+  bottomSheetOptions: {
+    // any v-bottom-sheet api options
+  },
+  dialogOptions: {
+    //same arguments as $dialog.create()
+    title: "My bottom-sheet card dialog",
+    text: "Hello world!",
+    buttons: [
+      { title: 'My first button', key: 'button1', /* any v-btn api option */ },
+      ...
+    ]
+  }
+}).then((anwser) => {
+  //Do something with the anwser corresponding to the key of the clicked button
+})
+```
+
+
+
+
 ### SFC compatibility
 If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  
 ```html
 <script setup>
 import { createDialog, warnDialog, confirmDialog } from 'vuetify3-dialog'
 import { createNotification, notifySuccess } from 'vuetify3-dialog'
+import { createBottomSheet } from 'vuetify3-dialog'
 
 if(true){
   createDialog({ title: "My title", text: "My dialog message" })
@@ -122,7 +171,10 @@ if(true){
     //Do something with the anwser corresponding to the key of the clicked button
   })
 
-  notifySuccess("My snackbar message")
+  notifySuccess("My snackbar message").then(() => {})
+
+  createBottomSheet({ title: "My bottomsheet title", text: "My bottomsheet message" })
+  .then(() => {})
 }
 </script>
 ```

@@ -1,25 +1,61 @@
-import { CreateDialogOptions, DialogButton, Level, PluginOptions } from 'types';
-import { App, createApp } from 'vue';
+import Notifier from 'Notifier';
+import PluginContext from 'PluginContext';
+import { CreateDialogOptions, DialogButton, Level } from 'types';
+import { createApp } from 'vue';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import Dialog from './components/Dialog.vue';
 
-let pluginOptions: PluginOptions;
+export default class Dialogs extends Notifier {
+  initContext(): void {
+    this._app.config.globalProperties.$dialog = {
+      create: createDialog,
+      confirm: confirmDialog,
+      warn: warnDialog,
+      error: errorDialog,
+      info: infoDialog,
+      success: successDialog,
+    };
+  }
+}
 
-export function initDialogsContext(app: App, _pluginOptions: PluginOptions) {
-  if (!app) throw new Error('Error during initialization : app is required');
-  if (!_pluginOptions) throw new Error('Error during initialization : plugin options is required');
-  if (!_pluginOptions.vuetify) throw new Error('Error during initialization : vuetify is required');
+export function createDialog(options: CreateDialogOptions) {
+  try {
+    const div = document.createElement('div');
 
-  pluginOptions = _pluginOptions;
+    if (!isNotEmptyAndNotNull(options.title)) throw new Error('title is required');
+    if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
 
-  app.config.globalProperties.$dialog = {
-    create: createDialog,
-    confirm: confirmDialog,
-    warn: warnDialog,
-    error: errorDialog,
-    info: infoDialog,
-    success: successDialog,
-  };
+    if (options.buttons) {
+      options.buttons.forEach(validateButton);
+    }
+
+    return new Promise((resolve, reject) => {
+      const _app = createApp(Dialog, {
+        title: options.title,
+        text: options.text,
+        buttons: options.buttons,
+        level: options.level,
+        dialogOptions: PluginContext.getPluginOptions().defaults?.dialog?.component || undefined,
+        cardOptions: options.cardOptions ||
+          PluginContext.getPluginOptions().defaults?.dialog?.card || {
+            location: 'center center',
+            width: '400px',
+          },
+        onCloseDialog: (value: string | boolean) => {
+          resolve(value);
+          _app.unmount();
+          document.body.removeChild(div);
+        },
+      });
+
+      _app.use(PluginContext.getVuetify());
+
+      document.body.appendChild(div);
+      _app.mount(div);
+    });
+  } catch (err: any) {
+    console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);
+  }
 }
 
 export function warnDialog(text: string, title?: string, cardOptions?: VCard['$props'], buttonOptions?: DialogButton) {
@@ -87,46 +123,6 @@ export function confirmDialog(
     level,
     cardOptions,
   });
-}
-
-export function createDialog(options: CreateDialogOptions) {
-  try {
-    const div = document.createElement('div');
-
-    if (!isNotEmptyAndNotNull(options.title)) throw new Error('title is required');
-    if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
-
-    if (options.buttons) {
-      options.buttons.forEach(validateButton);
-    }
-
-    return new Promise((resolve, reject) => {
-      const _app = createApp(Dialog, {
-        title: options.title,
-        text: options.text,
-        buttons: options.buttons,
-        level: options.level,
-        dialogOptions: pluginOptions.defaults?.dialog?.component || undefined,
-        cardOptions: options.cardOptions ||
-          pluginOptions.defaults?.dialog?.card || {
-            location: 'center center',
-            width: '400px',
-          },
-        onCloseDialog: (value: string | boolean) => {
-          resolve(value);
-          _app.unmount();
-          document.body.removeChild(div);
-        },
-      });
-
-      _app.use(pluginOptions.vuetify);
-
-      document.body.appendChild(div);
-      _app.mount(div);
-    });
-  } catch (err: any) {
-    console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);
-  }
 }
 
 function validateButton(button: any, index: number) {
