@@ -1,0 +1,18 @@
+{
+  "name": "vuetify3-dialog",
+  "version": "0.0.1",
+  "description": "Vue 3 & Vuetify 3 plugin to create dialogs, toasts and bottom-sheets with Promises.",
+  "main": "index.js",
+  "authors": {
+    "name": "Thomas Leconte"
+  },
+  "repository": "https://github.com/ThomasLeconte/vuetify3-dialog/vuetify3-dialog",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
