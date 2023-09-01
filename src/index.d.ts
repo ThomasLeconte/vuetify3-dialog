@@ -70,7 +70,7 @@ export function successDialog(
   cardOptions?: VCard['$props'],
   buttonOptions?: DialogButton,
 ): Promise<string>;
-export function confirm(
+export function confirmDialog(
   title: string,
   text: string,
   level?: Level,
