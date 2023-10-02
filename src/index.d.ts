@@ -6,7 +6,7 @@ import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
 import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 
-type PluginOptions = {
+export type PluginOptions = {
   vuetify: Plugin;
   defaults?: {
     dialog?: {
@@ -18,11 +18,11 @@ type PluginOptions = {
   };
 };
 
-type Level = 'warning' | 'error' | 'info' | 'success';
+export type Level = 'warning' | 'error' | 'info' | 'success';
 
-type DialogButton = Omit<Omit<VBtn['$props'], 'text'>, 'key'> & { title: string; key: string | boolean };
+export type DialogButton = Omit<Omit<VBtn['$props'], 'text'>, 'key'> & { title: string; key: string | boolean };
 
-type CreateDialogOptions = {
+export type CreateDialogOptions = {
   title: string;
   text: string;
   buttons?: DialogButton[];
@@ -30,14 +30,14 @@ type CreateDialogOptions = {
   cardOptions?: VCard['$props'];
 };
 
-type CreateNotifyOptions = {
+export type CreateNotifyOptions = {
   text: string;
   level?: string;
   location?: string;
   notifyOptions?: VSnackbar['$props'];
 };
 
-type CreateBottomSheetOptions = {
+export type CreateBottomSheetOptions = {
   title?: string;
   text?: string;
   items?: VListItem['$props'][];
