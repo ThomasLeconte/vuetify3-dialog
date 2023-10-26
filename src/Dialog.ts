@@ -22,8 +22,13 @@ export function createDialog(options: CreateDialogOptions) {
   try {
     const div = document.createElement('div');
 
-    if (!isNotEmptyAndNotNull(options.title)) throw new Error('title is required');
-    if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
+    if (!options.customComponent) {
+      if (!isNotEmptyAndNotNull(options.title)) throw new Error('title is required');
+      if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
+    } else {
+      options.title = options.title || '';
+      options.text = options.text || '';
+    }
 
     if (options.buttons) {
       options.buttons.forEach(validateButton);
@@ -35,7 +40,9 @@ export function createDialog(options: CreateDialogOptions) {
         text: options.text,
         buttons: options.buttons,
         level: options.level,
-        dialogOptions: PluginContext.getPluginOptions().defaults?.dialog?.component || undefined,
+        customComponent: options.customComponent,
+        dialogOptions:
+          PluginContext.getPluginOptions().defaults?.dialog?.component || options.dialogOptions || undefined,
         cardOptions: options.cardOptions ||
           PluginContext.getPluginOptions().defaults?.dialog?.card || {
             location: 'center center',

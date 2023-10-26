@@ -15,6 +15,7 @@
           <h3 class="primary-text">Dialogs</h3>
           <div class="mt-5">
             <v-btn id="create-dialog" @click="createDialog()">Create Dialog</v-btn>
+            <v-btn id="create-custom-component-dialog" @click="createCustomComponentDialog()" color="warning">Custom component Dialog</v-btn>
             <v-btn id="success-dialog" @click="successDialog()" color="success">Success Dialog</v-btn>
             <v-btn id="confirm-dialog" @click="confirmDialog()" color="primary">Confirm Dialog</v-btn>
           </div>
@@ -57,12 +58,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import sfcExampleVue from "./sfc-example.vue";
+import MyComponent from "./MyComponent.vue";
 
   
 export default defineComponent({
   name: "HelloWorld",
   components: {
     sfcExampleVue,
+    MyComponent
   },
   data: () => ({
     show: true
@@ -76,6 +79,18 @@ export default defineComponent({
           { key: 'button1', title: 'Button 1', variant: 'outlined', color: 'error' },
           { key: 'button2', title: 'Button 2', variant: 'tonal', color: 'success' }
         ]
+      })
+    },
+    createCustomComponentDialog(){
+      this.$dialog.create({
+        customComponent: {
+          component: MyComponent,
+          props: { message: "Hello world!" }
+        },
+        dialogOptions: {
+          width: "600px",
+          persistent: true
+        }
       })
     },
     successDialog(){
