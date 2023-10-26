@@ -48,11 +48,34 @@ this.$dialog.create({
   ],
   cardOptions: {
     //any v-card api options
+  },
+  dialogOptions: {
+    //any v-dialog api options
   }
 }).then((anwser) => {
   //Do something with the anwser corresponding to the key of the clicked button
 })
 ```
+<br>
+<hr>
+
+####  **NEW (V1.3.3)**
+You can pass a custom component to render inside the dialog, with it props binded! Here's how to do it :
+```js
+this.$dialog.create({
+  ..., //other options
+  customComponent: {
+    component: MyCustomComponent,
+    props: { myComponentProp: 'Hello world!' }
+  },
+}).then(() => {
+})
+```
+> [!WARNING]  
+> ⚠ If you declare a persistent dialog option, take care that your component emit a `closeDialog` event when you want to close it.
+
+<hr>
+<br>
 
 `this.$dialog` also have a `confirm` method, which is a shortcut for the previous method with only two buttons : "Yes" and "No". 
 ```js

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { DialogButton } from "types";
-import { computed, defineComponent, reactive, ref } from "vue";
+import { ComponentOptions, DialogButton } from "types";
+import { Component, computed, defineComponent, getCurrentInstance, onMounted, PropType, reactive, ref } from "vue";
 import { VDialog } from 'vuetify/lib/components/index.mjs'
 import Card from './Card.vue'
 
@@ -31,6 +31,10 @@ const props = defineProps({
   dialogOptions: {
     type: Object,
     default: () => ({})
+  },
+  customComponent: {
+    type: Object as PropType<ComponentOptions>,
+    required: false
   }
 })
 
@@ -54,7 +58,11 @@ function close(buttonKey: string | boolean){
     v-model="showDialog"
     v-bind="dialogOptions"
   >
+    <template v-if="customComponent">
+      <component :is="customComponent.component" v-bind="customComponent.props" @closeDialog="close" ref="custom-component" />
+    </template>
     <Card
+      v-else
       v-bind="cardOptions"
       :title="title"
       :text="text"

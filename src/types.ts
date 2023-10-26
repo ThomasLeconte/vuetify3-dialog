@@ -1,4 +1,4 @@
-import { Plugin } from 'vue';
+import { Component, Plugin } from 'vue';
 import { VBottomSheet } from 'vuetify/labs/VBottomSheet';
 import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
@@ -22,11 +22,18 @@ export type Level = 'warning' | 'error' | 'info' | 'success';
 
 export type DialogButton = Omit<Omit<VBtn['$props'], 'text'>, 'key'> & { title: string; key: string | boolean };
 
+export type ComponentOptions = {
+  component: Component;
+  props: any;
+};
+
 export type CreateDialogOptions = {
   title: string;
   text: string;
   buttons?: DialogButton[];
   level?: Level;
+  customComponent?: ComponentOptions;
+  dialogOptions?: VDialog['$props'];
   cardOptions?: VCard['$props'];
 };
 
