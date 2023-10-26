@@ -59,7 +59,7 @@ this.$dialog.create({
 <br>
 <hr>
 
-####  **NEW (V1.3.3)**
+####  **NEW (V1.4.0)**
 You can pass a custom component to render inside the dialog, with it props binded! Here's how to do it :
 ```js
 this.$dialog.create({
