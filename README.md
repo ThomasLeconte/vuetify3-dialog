@@ -1,4 +1,4 @@
-# Vuetify 3 Dialog
+# Vuetify 3 Dialog ![Javascript](https://img.shields.io/badge/-Javascript-F7DF1E?style=rounded&logo=javascript&logoColor=black) ![Typescript](https://img.shields.io/badge/-Typescript-2e86de?style=rounded&logo=typescript&logoColor=black) ![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D?style=rounded&logo=vue.js&logoColor=white)
 Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 
 ## Summary
