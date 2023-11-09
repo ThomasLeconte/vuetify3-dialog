@@ -1,5 +1,5 @@
 import { Component, Plugin } from 'vue';
-import { VBottomSheet } from 'vuetify/labs/VBottomSheet';
+import { VBottomSheet } from 'vuetify/lib/components/VBottomSheet/index.mjs';
 import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';

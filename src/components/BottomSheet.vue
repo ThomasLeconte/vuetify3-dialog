@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, defineComponent, PropType, ref, watch } from 'vue'
-import { VBottomSheet } from 'vuetify/labs/VBottomSheet'
+import { VBottomSheet } from 'vuetify/lib/components/VBottomSheet/index.mjs'
 import Card from './Card.vue'
 import { VCard, VCardTitle, VCardText, VList, VListItem } from 'vuetify/lib/components/index.mjs'
 

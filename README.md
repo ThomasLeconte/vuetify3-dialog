@@ -136,7 +136,7 @@ __Usefull links:__
 ### Bottom sheets
 
 > [!WARNING]  
-> ⚠ This feature requires Vuetify 3.3.0 or higher
+> ⚠ This feature requires Vuetify 3.4.0 or higher
 
 You can create a fully personalized bottom sheet with a contained list or a card dialog. **To stay consistent, these two features cannot be used at same time.**  
 Here is an example with a list :
