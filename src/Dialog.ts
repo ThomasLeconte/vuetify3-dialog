@@ -50,8 +50,10 @@ export function createDialog(options: CreateDialogOptions) {
           },
         onCloseDialog: (value: string | boolean) => {
           resolve(value);
-          _app.unmount();
-          document.body.removeChild(div);
+          setTimeout(() => {
+            _app.unmount();
+            document.body.removeChild(div);
+          }, 500);
         },
       });
 

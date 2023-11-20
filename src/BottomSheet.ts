@@ -48,8 +48,10 @@ export function createBottomSheet(options: CreateBottomSheetOptions) {
         text: options?.text,
         onCloseBottomSheet: (value: string | boolean) => {
           resolve(value);
-          _app.unmount();
-          document.body.removeChild(div);
+          setTimeout(() => {
+            _app.unmount();
+            document.body.removeChild(div);
+          }, 500);
         },
       });
 

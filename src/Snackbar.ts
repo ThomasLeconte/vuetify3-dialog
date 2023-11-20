@@ -44,8 +44,10 @@ export function createNotification(options: CreateNotifyOptions) {
         notifyOptions: options.notifyOptions || PluginContext.getPluginOptions().defaults?.notify || undefined,
         onCloseSnackbar: () => {
           resolve(true);
-          _app.unmount();
-          document.body.removeChild(div);
+          setTimeout(() => {
+            _app.unmount();
+            document.body.removeChild(div);
+          }, 500);
         },
       });
 
