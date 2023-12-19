@@ -109,7 +109,7 @@ export default defineComponent({
       })
     },
     errorNotification(){
-      this.$notify.error("Hello error!")
+      this.$notify.error("Hello error!", {timeout: 1000, position: 'absolute'})
     },
     createBottomsheet(){
       this.$bottomSheet.create({
