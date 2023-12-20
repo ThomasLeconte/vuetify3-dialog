@@ -104,12 +104,13 @@ export default defineComponent({
       this.$notify.create({
         text: "Hello world!",
         notifyOptions: {
-          timeout: 30000
+          timeout: 30000,
+          location: 'top right'
         }
       })
     },
     errorNotification(){
-      this.$notify.error("Hello error!", {timeout: 1000, position: 'absolute'})
+      this.$notify.error("Hello error!\nHellddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddo !", {timeout: 30000, location: 'bottom right'})
     },
     createBottomsheet(){
       this.$bottomSheet.create({
