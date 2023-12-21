@@ -67,9 +67,9 @@ export function createNotification(options: CreateNotifyOptions) {
       if ((vuetifyDivOverlay as HTMLElement)?.childElementCount > 1) {
         for (let child of (vuetifyDivOverlay as HTMLElement).children) {
           if (child === (vuetifyDivOverlay as HTMLElement).lastElementChild) continue;
-          console.log('child', child);
+          // console.log('child', child);
           if ((child as HTMLElement).lastElementChild) {
-            console.log('child of child', (child as HTMLElement).lastElementChild);
+            // console.log('child of child', (child as HTMLElement).lastElementChild);
             margin += ((child as HTMLElement).lastElementChild as HTMLElement).offsetHeight + 12;
           }
         }
