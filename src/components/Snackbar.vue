@@ -7,13 +7,13 @@ const props = defineProps({
     type: String,
     required: true
   },
+  location: {
+    type: String,
+    required: true
+  },
   level: {
     type: String as () => 'info' | 'warning' | 'error' | 'success',
     default: 'info'
-  },
-  location: {
-    type: String,
-    default: 'top right'
   },
   notifyOptions: {
     type: Object,
@@ -27,10 +27,11 @@ const emit = defineEmits(['closeSnackbar'])
 // ------- DATA -------
 let showSnackbar = ref(true)
 
-// ------- WATCH -------
-watch(() => showSnackbar, (val) => {
-  if(!val) emit('closeSnackbar')
-})
+// ------- METHODS -------
+function close(){
+  showSnackbar.value = false
+  emit('closeSnackbar')
+}
 </script>
 
 <template>
@@ -40,7 +41,9 @@ watch(() => showSnackbar, (val) => {
     v-model="showSnackbar"
     :color="level"
     :location="location"
+    location-strategy="static"
     :dark="level === 'warning' || level === 'error'"
+    @update:model-value="close()"
   >
     {{text}}
   </VSnackbar>

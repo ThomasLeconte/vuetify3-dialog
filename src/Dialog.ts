@@ -1,12 +1,21 @@
 import Notifier from 'Notifier';
 import PluginContext from 'PluginContext';
 import { CreateDialogOptions, DialogButton, Level } from 'types';
-import { createApp } from 'vue';
+import { createApp, createVNode, h, render } from 'vue';
 import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import Dialog from './components/Dialog.vue';
+import { VBtn } from 'vuetify/lib/components/index.mjs';
 
 export default class Dialogs extends Notifier {
   initContext(): void {
+    // let vNode = h(Dialog, { title: 'coucou', text: 'vuetify3-dialog' });
+    // if (this._app && this._app._context) {
+    //   console.log('app context');
+    //   vNode.appContext = this._app._context;
+    //   console.log(this._app._context);
+    // }
+    // render(vNode, document.createElement('div'));
+
     this._app.config.globalProperties.$dialog = {
       create: createDialog,
       confirm: confirmDialog,

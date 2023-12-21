@@ -8,6 +8,7 @@
     "no-console": false,
     "max-classes-per-file": false,
     "object-literal-shorthand": false,
-    "ban-types": [false]
+    "ban-types": [false],
+    "prefer-const": false
   }
 }
