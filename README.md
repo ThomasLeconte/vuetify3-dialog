@@ -79,7 +79,7 @@ this.$dialog.create({
 
 `this.$dialog` also have a `confirm` method, which is a shortcut for the previous method with only two buttons : "Yes" and "No". 
 ```js
-this.$dialog.confirm("My title", "My dialog message", 'warning', 'Cancel', 'Confirm')
+this.$dialog.confirm({title: "My title", text: "My dialog message", cancelText: "No", confirmationText: "Yes", cancelButtonOptions: ..., confirmationButtonOptions: ...})
 .then((anwser) => {
   //Do something with the boolean anwser
 })
@@ -87,12 +87,12 @@ this.$dialog.confirm("My title", "My dialog message", 'warning', 'Cancel', 'Conf
 
 You can also create a simple dialog with a message and a title, by precizing level of severity :
 ```js
-this.$dialog.info(
-  "My dialog message",
-  "My title", //optional
-  { width: '500px'} //optional v-card api options,
-  { variant: 'outlined' } //optional v-btn api options
-).then(() => {
+this.$dialog.info({ 
+  title: "My title",
+  text: "My dialog message",
+  cardOptions: ..., 
+  buttonOptions: ...
+}).then(() => {
   //Do something when the user close the dialog
 })
 ```
