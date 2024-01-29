@@ -57,8 +57,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import sfcExampleVue from "./sfc-example.vue";
 import MyComponent from "./MyComponent.vue";
+import sfcExampleVue from "./sfc-example.vue";
 
   
 export default defineComponent({
@@ -94,10 +94,10 @@ export default defineComponent({
       })
     },
     successDialog(){
-      this.$dialog.success("Hello world!", "My success dialog")
+      this.$dialog.success({title: "Hello world", text: "My success dialog"})
     },
     confirmDialog(){
-      this.$dialog.confirm("My confirm dialog", "Hello world!", 'warning', 'Cancel button', 'Confirm button')
+      this.$dialog.confirm({title: "My confirm dialog", text: "Hello world!", level: 'warning', cancelText: 'Cancel button', confirmationText: 'Confirm button'})
         .then((v: boolean) => console.log(v))
     },
     createNotification(){

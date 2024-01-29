@@ -73,7 +73,3 @@ function close(buttonKey: string | boolean){
     />
   </VDialog>
 </template>
-
-<style lang="scss">
-
-</style>
