@@ -48,13 +48,11 @@ export function createDialog(options: CreateDialogOptions) {
         buttons: options.buttons,
         level: options.level,
         customComponent: options.customComponent,
-        dialogOptions:
-          PluginContext.getPluginOptions().defaults?.dialog?.component || options.dialogOptions || undefined,
-        cardOptions: options.cardOptions ||
-          PluginContext.getPluginOptions().defaults?.dialog?.card || {
-            location: 'center center',
+        dialogOptions: PluginContext.getPluginOptions().defaults?.dialog?.component ||
+          options.dialogOptions || {
             width: '400px',
           },
+        cardOptions: options.cardOptions || PluginContext.getPluginOptions().defaults?.dialog?.card || undefined,
         onCloseDialog: (value: string | boolean) => {
           resolve(value);
           setTimeout(() => {
@@ -80,7 +78,7 @@ export function warnDialog(options: BasicDialogOptions) {
     text: options.text,
     buttons: [{ key: 'ok', title: 'OK', color: 'warning', ...options.buttonOptions }],
     level: 'warning',
-    cardOptions: options.cardOptions
+    cardOptions: options.cardOptions,
   });
 }
 
@@ -90,7 +88,7 @@ export function errorDialog(options: BasicDialogOptions) {
     text: options.text,
     buttons: [{ key: 'ok', title: 'OK', color: 'error', ...options.buttonOptions }],
     level: 'error',
-    cardOptions: options.cardOptions
+    cardOptions: options.cardOptions,
   });
 }
 
@@ -120,10 +118,15 @@ export function confirmDialog(options: ConfirmDialogOptions) {
     text: options.text,
     buttons: [
       { key: false, title: options.cancelText || 'Cancel', color: 'grey', ...options.cancelButtonOptions },
-      { key: true, title: options.confirmationText || 'Confirm', color: 'warning', ...options.confirmationButtonOptions },
+      {
+        key: true,
+        title: options.confirmationText || 'Confirm',
+        color: 'warning',
+        ...options.confirmationButtonOptions,
+      },
     ],
     level: options.level,
-    cardOptions: options.cardOptions
+    cardOptions: options.cardOptions,
   });
 }
 

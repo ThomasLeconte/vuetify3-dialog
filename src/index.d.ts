@@ -28,21 +28,21 @@ export type ComponentOptions = {
 };
 
 export type BasicDialogOptions = {
-  text: string,
-  title?: string,
-  cardOptions?: VCard['$props'],
-  buttonOptions?: DialogButton
+  text: string;
+  title?: string;
+  cardOptions?: VCard['$props'];
+  buttonOptions?: DialogButton;
 };
 
 export type ConfirmDialogOptions = {
-  title: string,
-  text: string,
-  level?: Level,
-  cancelText?: string,
-  confirmationText?: string,
-  cardOptions?: VCard['$props'],
-  cancelButtonOptions?: DialogButton,
-  confirmationButtonOptions?: DialogButton
+  title: string;
+  text: string;
+  level?: Level;
+  cancelText?: string;
+  confirmationText?: string;
+  cardOptions?: VCard['$props'];
+  cancelButtonOptions?: DialogButton;
+  confirmationButtonOptions?: DialogButton;
 };
 
 export type CreateDialogOptions = {
