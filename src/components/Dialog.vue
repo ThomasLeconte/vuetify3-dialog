@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ComponentOptions, DialogButton } from "types";
-import { Component, computed, defineComponent, getCurrentInstance, onMounted, PropType, reactive, ref } from "vue";
-import { VDialog } from 'vuetify/lib/components/index.mjs'
-import Card from './Card.vue'
+import { ComponentOptions } from 'types';
+import { Component, PropType, ref } from 'vue';
+import { VDialog } from 'vuetify/lib/components/index.mjs';
+import Card from './Card.vue';
 
 const props = defineProps({
   title: {

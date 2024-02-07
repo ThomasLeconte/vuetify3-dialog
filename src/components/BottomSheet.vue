@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed, defineComponent, PropType, ref, watch } from 'vue'
-import { VBottomSheet } from 'vuetify/lib/components/VBottomSheet/index.mjs'
-import Card from './Card.vue'
-import { VCard, VCardTitle, VCardText, VList, VListItem } from 'vuetify/lib/components/index.mjs'
+import { computed, ref, watch } from 'vue';
+import Card from './Card.vue';
+import { VCard, VCardText, VCardTitle, VList, VListItem, VBottomSheet } from 'vuetify/lib/components/index.mjs';
 
 const props = defineProps({
   bottomSheetOptions: {

@@ -60,7 +60,7 @@ import { defineComponent } from "vue";
 import MyComponent from "./MyComponent.vue";
 import sfcExampleVue from "./sfc-example.vue";
 
-  
+
 export default defineComponent({
   name: "HelloWorld",
   components: {
@@ -94,7 +94,7 @@ export default defineComponent({
       })
     },
     successDialog(){
-      this.$dialog.success({title: "Hello world", text: "My success dialog"})
+      this.$dialog.success({title: "My success dialog", text: "Hello world!"})
     },
     confirmDialog(){
       this.$dialog.confirm({title: "My confirm dialog", text: "Hello world!", level: 'warning', cancelText: 'Cancel button', confirmationText: 'Confirm button'})

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { VSnackbar } from 'vuetify/lib/components/index.mjs'
+import { ref } from 'vue';
+import { VSnackbar } from 'vuetify/lib/components/index.mjs';
 
 const props = defineProps({
   text: {

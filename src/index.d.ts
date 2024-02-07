@@ -71,40 +71,11 @@ export type CreateBottomSheetOptions = {
 
 //SFC dialogs methods
 export function createDialog(options: CreateDialogOptions): Promise<string>;
-export function warnDialog(
-  text: string,
-  title?: string,
-  cardOptions?: VCard['$props'],
-  buttonOptions?: DialogButton,
-): Promise<string>;
-export function errorDialog(
-  text: string,
-  title?: string,
-  cardOptions?: VCard['$props'],
-  buttonOptions?: DialogButton,
-): Promise<string>;
-export function infoDialog(
-  text: string,
-  title?: string,
-  cardOptions?: VCard['$props'],
-  buttonOptions?: DialogButton,
-): Promise<string>;
-export function successDialog(
-  text: string,
-  title?: string,
-  cardOptions?: VCard['$props'],
-  buttonOptions?: DialogButton,
-): Promise<string>;
-export function confirmDialog(
-  title: string,
-  text: string,
-  level?: Level,
-  cancelText?: string,
-  confirmationText?: string,
-  cardOptions?: VCard['$props'],
-  cancelButtonOptions?: DialogButton,
-  confirmationButtonOptions?: DialogButton,
-): Promise<boolean>;
+export function warnDialog(options: BasicDialogOptions): Promise<string>;
+export function errorDialog(options: BasicDialogOptions): Promise<string>;
+export function infoDialog(options: BasicDialogOptions): Promise<string>;
+export function successDialog(options: BasicDialogOptions): Promise<string>;
+export function confirmDialog(options: ConfirmDialogOptions): Promise<boolean>;
 
 //SFC snackbars methods
 export function createNotification(options: CreateNotifyOptions): Promise<string>;
@@ -125,18 +96,11 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $dialog: {
       create: (options: CreateDialogOptions) => Promise<string>;
-      warn: (text: string, title?: string, cardOptions?: any) => Promise<string>;
-      error: (text: string, title?: string, cardOptions?: any) => Promise<string>;
-      info: (text: string, title?: string, cardOptions?: any) => Promise<string>;
-      success: (text: string, title?: string, cardOptions?: any) => Promise<string>;
-      confirm: (
-        title: string,
-        text: string,
-        level?: Level,
-        cancelText?: string,
-        confirmationText?: string,
-        cardOptions?: any,
-      ) => Promise<boolean>;
+      warn: (options: BasicDialogOptions) => Promise<string>;
+      error: (options: BasicDialogOptions) => Promise<string>;
+      info: (options: BasicDialogOptions) => Promise<string>;
+      success: (options: BasicDialogOptions) => Promise<string>;
+      confirm: (options: ConfirmDialogOptions) => Promise<boolean>;
     };
 
     $notify: {

@@ -5,8 +5,6 @@ import { createApp } from 'vue';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 import Snackbar from './components/Snackbar.vue';
 
-let snacksByLocation = { top: 0, bottom: 0 };
-
 export default class SnackBar extends Notifier {
   initContext(): void {
     this._app.config.globalProperties.$notify = {
@@ -22,12 +20,15 @@ export default class SnackBar extends Notifier {
 export function notifyWarning(text: string, notifyOptions?: VSnackbar['$props']) {
   return createNotification({ text, level: 'warning', ...notifyOptions });
 }
+
 export function notifyError(text: string, notifyOptions?: VSnackbar['$props']) {
   return createNotification({ text, level: 'error', notifyOptions });
 }
+
 export function notifyInfo(text: string, notifyOptions?: VSnackbar['$props']) {
   return createNotification({ text, level: 'info', ...notifyOptions });
 }
+
 export function notifySuccess(text: string, notifyOptions?: VSnackbar['$props']) {
   return createNotification({ text, level: 'success', notifyOptions });
 }

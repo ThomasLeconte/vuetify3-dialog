@@ -6,14 +6,6 @@ import Dialog from './components/Dialog.vue';
 
 export default class Dialogs extends Notifier {
   initContext(): void {
-    // let vNode = h(Dialog, { title: 'coucou', text: 'vuetify3-dialog' });
-    // if (this._app && this._app._context) {
-    //   console.log('app context');
-    //   vNode.appContext = this._app._context;
-    //   console.log(this._app._context);
-    // }
-    // render(vNode, document.createElement('div'));
-
     this._app.config.globalProperties.$dialog = {
       create: createDialog,
       confirm: confirmDialog,
