@@ -1,6 +1,6 @@
 {
   "name": "vuetify3-dialog",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Vue 3 & Vuetify 3 plugin to create dialogs, toasts and bottom-sheets with Promises.",
   "keywords": [
     "vue",
