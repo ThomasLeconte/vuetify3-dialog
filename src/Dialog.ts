@@ -118,6 +118,7 @@ export function confirmDialog(options: ConfirmDialogOptions) {
         ...options.confirmationButtonOptions,
       },
     ],
+    icon: options.icon,
     level: options.level,
     cardOptions: options.cardOptions,
   });
