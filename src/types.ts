@@ -30,6 +30,7 @@ export type ComponentOptions = {
 export type BasicDialogOptions = {
   text: string;
   title?: string;
+  icon?: string;
   cardOptions?: VCard['$props'];
   buttonOptions?: DialogButton;
 };

@@ -18,5 +18,5 @@ export function registerPlugins (app: App) {
   app
     .use(vuetify)
     .use(router)
-    .use(Vuetify3Dialog, { vuetify })
+    .use(Vuetify3Dialog, { vuetify, defaults: { notify: {location: 'top left'} } })
 }

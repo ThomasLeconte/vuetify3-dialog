@@ -30,6 +30,7 @@ export type ComponentOptions = {
 export type BasicDialogOptions = {
   text: string;
   title?: string;
+  icon?: string;
   cardOptions?: VCard['$props'];
   buttonOptions?: DialogButton;
 };
@@ -37,6 +38,7 @@ export type BasicDialogOptions = {
 export type ConfirmDialogOptions = {
   title: string;
   text: string;
+  icon?: string;
   level?: Level;
   cancelText?: string;
   confirmationText?: string;
@@ -49,6 +51,7 @@ export type CreateDialogOptions = {
   title: string;
   text: string;
   buttons?: DialogButton[];
+  icon?: string;
   level?: Level;
   customComponent?: ComponentOptions;
   dialogOptions?: VDialog['$props'];
