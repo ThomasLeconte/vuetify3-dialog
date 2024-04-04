@@ -37,6 +37,7 @@ export type BasicDialogOptions = {
 export type ConfirmDialogOptions = {
   title: string;
   text: string;
+  icon?: string;
   level?: Level;
   cancelText?: string;
   confirmationText?: string;
@@ -49,6 +50,7 @@ export type CreateDialogOptions = {
   title: string;
   text: string;
   buttons?: DialogButton[];
+  icon?: string;
   level?: Level;
   customComponent?: ComponentOptions;
   dialogOptions?: VDialog['$props'];

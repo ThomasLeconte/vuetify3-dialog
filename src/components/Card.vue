@@ -41,6 +41,7 @@ const _buttons = computed(() => {
 })
 
 const _icon = computed(() => {
+  if (props.icon) return props.icon;
   switch (props.level) {
     case 'info':
       return 'mdi-information'
