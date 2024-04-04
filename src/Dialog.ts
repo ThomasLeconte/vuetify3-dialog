@@ -69,6 +69,7 @@ export function warnDialog(options: BasicDialogOptions) {
   return createDialog({
     title: options.title || 'Warning',
     text: options.text,
+    icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'warning', ...options.buttonOptions }],
     level: 'warning',
     cardOptions: options.cardOptions,
@@ -79,6 +80,7 @@ export function errorDialog(options: BasicDialogOptions) {
   return createDialog({
     title: options.title || 'Error',
     text: options.text,
+    icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'error', ...options.buttonOptions }],
     level: 'error',
     cardOptions: options.cardOptions,
@@ -89,6 +91,7 @@ export function infoDialog(options: BasicDialogOptions) {
   return createDialog({
     title: options.title || 'Info',
     text: options.text,
+    icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'info', ...options.buttonOptions }],
     level: 'info',
     cardOptions: options.cardOptions,
@@ -99,6 +102,7 @@ export function successDialog(options: BasicDialogOptions) {
   return createDialog({
     title: options.title || 'Success',
     text: options.text,
+    icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'success', ...options.buttonOptions }],
     level: 'success',
     cardOptions: options.cardOptions,
