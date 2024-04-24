@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { VSnackbar } from 'vuetify/lib/components/index.mjs';
+import { VSnackbar, VLayout } from 'vuetify/lib/components/index.mjs';
 
 const props = defineProps({
   text: {
@@ -35,18 +35,20 @@ function close(){
 </script>
 
 <template>
-  <VSnackbar
-    class="vuetify3-dialog-snackbar"
-    v-bind="notifyOptions"
-    v-model="showSnackbar"
-    :color="level"
-    :location="location"
-    location-strategy="static"
-    :dark="level === 'warning' || level === 'error'"
-    @update:model-value="close()"
-  >
-    {{text}}
-  </VSnackbar>
+  <VLayout>
+    <VSnackbar
+      class="vuetify3-dialog-snackbar"
+      v-bind="notifyOptions"
+      v-model="showSnackbar"
+      :color="level"
+      :location="location"
+      location-strategy="static"
+      :dark="level === 'warning' || level === 'error'"
+      @update:model-value="close()"
+    >
+      {{text}}
+    </VSnackbar>
+  </VLayout>
 </template>
 
 <style>
