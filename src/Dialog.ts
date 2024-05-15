@@ -41,7 +41,8 @@ export function createDialog(options: CreateDialogOptions) {
         icon: options.icon,
         level: options.level,
         customComponent: options.customComponent,
-        dialogOptions: options.dialogOptions || PluginContext.getPluginOptions().defaults?.dialog?.component || {
+        dialogOptions: options.dialogOptions ||
+          PluginContext.getPluginOptions().defaults?.dialog?.component || {
             width: '400px',
           },
         cardOptions: options.cardOptions || PluginContext.getPluginOptions().defaults?.dialog?.card || undefined,
