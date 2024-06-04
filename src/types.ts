@@ -7,7 +7,6 @@ import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
 
 export type PluginOptions = {
-  vuetify: Plugin;
   defaults?: {
     dialog?: {
       component?: VDialog['$props'];
@@ -16,6 +15,7 @@ export type PluginOptions = {
     notify?: VSnackbar['$props'];
     bottomSheet?: VBottomSheet['$props'];
   };
+  vuetify?: Plugin;
 };
 
 export type Level = 'warning' | 'error' | 'info' | 'success';

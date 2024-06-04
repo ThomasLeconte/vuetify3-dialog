@@ -3,23 +3,24 @@ import { App } from 'vue';
 
 export default class PluginContext {
   private static pluginOptions: PluginOptions;
+  private static app: App;
 
-  constructor(app: App, _pluginOptions: PluginOptions) {
+  constructor(app: App, _pluginOptions?: PluginOptions) {
     if (!app) throw new Error('Error during initialization : app is required');
-    if (!_pluginOptions) throw new Error('Error during initialization : plugin options is required');
-    if (!_pluginOptions.vuetify)
-      throw new Error(
-        'Error during initialization : vuetify is required. Please declare it with Vue.use(Dialogs, { vuetify })',
-      );
+    PluginContext.app = app;
 
-    PluginContext.pluginOptions = _pluginOptions;
+    const vuetify = app._context.mixins.find((mixin) => mixin.computed && mixin.computed.$vuetify);
+    if (!vuetify)
+      throw new Error('Error during initialization : vuetify is required. Please declare it with Vue.use(Vuetify)');
+
+    if (_pluginOptions) PluginContext.pluginOptions = _pluginOptions;
   }
 
   static getPluginOptions(): PluginOptions {
     return PluginContext.pluginOptions;
   }
 
-  static getVuetify(): PluginOptions['vuetify'] {
-    return PluginContext.pluginOptions.vuetify;
+  static getApp(): App {
+    return PluginContext.app;
   }
 }

@@ -1,13 +1,12 @@
-import Notifier from 'Notifier';
 import PluginContext from 'PluginContext';
 import { CreateBottomSheetOptions } from 'types';
-import { createApp } from 'vue';
+import { h, render } from 'vue';
 import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
 import BottomSheet from './components/BottomSheet.vue';
 
-export default class BottomSheets extends Notifier {
-  initContext(): void {
-    this._app.config.globalProperties.$bottomSheet = {
+export default class BottomSheets {
+  public static initContext(): void {
+    PluginContext.getApp().config.globalProperties.$bottomSheet = {
       create: createBottomSheet,
       createList: createBottomSheetList,
     };
@@ -39,26 +38,21 @@ export function createBottomSheet(options: CreateBottomSheetOptions) {
 
     const div = document.createElement('div');
     return new Promise((resolve, reject) => {
-      const _app = createApp(BottomSheet, {
+      const props = {
         bottomSheetOptions:
-          options?.bottomSheetOptions || PluginContext.getPluginOptions().defaults?.bottomSheet || undefined,
+          options?.bottomSheetOptions || PluginContext.getPluginOptions()?.defaults?.bottomSheet || undefined,
         dialogOptions: options?.dialogOptions,
         items: options?.items,
         title: options?.title,
         text: options?.text,
         onCloseBottomSheet: (value: string | boolean) => {
           resolve(value);
-          setTimeout(() => {
-            _app.unmount();
-            document.body.removeChild(div);
-          }, 500);
         },
-      });
+      };
 
-      _app.use(PluginContext.getVuetify());
-
-      document.body.appendChild(div);
-      _app.mount(div);
+      const vNode = h(BottomSheet, props);
+      vNode.appContext = PluginContext.getApp()._context;
+      render(vNode, div);
     });
   } catch (err: any) {
     console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);

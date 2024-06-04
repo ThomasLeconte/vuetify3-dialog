@@ -25,8 +25,9 @@ import vuetifyInstance from './plugins/vuetify' //Or wherever you have your vuet
 import {Vuetify3Dialog} from 'vuetify3-dialog'
 
 const app = createApp(App)
+app.use(vuetifyInstance); //You must use Vuetify before Vuetify3Dialog
+        ...
 app.use(Vuetify3Dialog, {
-  vuetify: vuetifyInstance, //You must pass your vuetify instance as an option
   defaults: {
     //You can pass default options for dialogs, dialog's card, snackbars or bottom-sheets here
   }
