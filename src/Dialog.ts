@@ -1,12 +1,11 @@
-import Notifier from 'Notifier';
 import PluginContext from 'PluginContext';
 import { BasicDialogOptions, ConfirmDialogOptions, CreateDialogOptions } from 'types';
-import { createApp } from 'vue';
+import { h, render } from 'vue';
 import Dialog from './components/Dialog.vue';
 
-export default class Dialogs extends Notifier {
-  initContext(): void {
-    this._app.config.globalProperties.$dialog = {
+export default class Dialogs {
+  public static initContext(): void {
+    PluginContext.getApp().config.globalProperties.$dialog = {
       create: createDialog,
       confirm: confirmDialog,
       warn: warnDialog,
@@ -34,7 +33,7 @@ export function createDialog(options: CreateDialogOptions) {
     }
 
     return new Promise((resolve, reject) => {
-      const _app = createApp(Dialog, {
+      const props = {
         title: options.title,
         text: options.text,
         buttons: options.buttons,
@@ -42,23 +41,18 @@ export function createDialog(options: CreateDialogOptions) {
         level: options.level,
         customComponent: options.customComponent,
         dialogOptions: options.dialogOptions ||
-          PluginContext.getPluginOptions().defaults?.dialog?.component || {
+          PluginContext.getPluginOptions()?.defaults?.dialog?.component || {
             width: '400px',
           },
-        cardOptions: options.cardOptions || PluginContext.getPluginOptions().defaults?.dialog?.card || undefined,
+        cardOptions: options.cardOptions || PluginContext.getPluginOptions()?.defaults?.dialog?.card || undefined,
         onCloseDialog: (value: string | boolean) => {
           resolve(value);
-          setTimeout(() => {
-            _app.unmount();
-            document.body.removeChild(div);
-          }, 500);
         },
-      });
+      };
 
-      _app.use(PluginContext.getVuetify());
-
-      document.body.appendChild(div);
-      _app.mount(div);
+      const vNode = h(Dialog, props);
+      vNode.appContext = PluginContext.getApp()._context;
+      render(vNode, div);
     });
   } catch (err: any) {
     console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);

@@ -9,9 +9,9 @@ export const Vuetify3Dialog: Plugin = {
   install(app: App, options: PluginOptions) {
     try {
       new PluginContext(app, options);
-      new Dialogs(app).initContext();
-      new SnackBar(app).initContext();
-      new BottomSheets(app).initContext();
+      Dialogs.initContext();
+      SnackBar.initContext();
+      BottomSheets.initContext();
     } catch (err: any) {
       console.error(`[Vuetify3Dialog] ${err.message} [${err.stack}]`);
     }
