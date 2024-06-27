@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 beforeEach(() => {
   cy.visit('http://localhost:3000')
   cy.wait(500)
