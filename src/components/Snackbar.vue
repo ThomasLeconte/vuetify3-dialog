@@ -8,7 +8,7 @@ const props = defineProps({
     required: true
   },
   location: {
-    type: String,
+    type: String as () => 'top' | 'bottom' | 'left' | 'right' | 'top left' | 'top right' | 'bottom left' | 'bottom right',
     required: true
   },
   level: {
@@ -18,6 +18,10 @@ const props = defineProps({
   notifyOptions: {
     type: Object,
     default: () => ({})
+  },
+  onCloseSnackbar: {
+    type: Function,
+    default: () => {}
   }
 })
 
@@ -30,6 +34,7 @@ let showSnackbar = ref(true)
 // ------- METHODS -------
 function close(){
   showSnackbar.value = false
+  props.onCloseSnackbar()
   emit('closeSnackbar')
 }
 </script>
