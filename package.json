@@ -44,6 +44,7 @@
     "lib/**/*"
   ],
   "devDependencies": {
+    "@types/node": "^18.15.0",
     "@types/jest": "^29.5.3",
     "babel-jest": "^29.6.2",
     "cypress": "^12.17.3",
