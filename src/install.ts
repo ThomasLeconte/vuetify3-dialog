@@ -4,9 +4,8 @@ import SnackBar from 'Snackbar';
 import { App, Plugin } from 'vue';
 import PluginContext from './PluginContext';
 import { PluginOptions } from './types';
-
 export const Vuetify3Dialog: Plugin = {
-  install(app: App, options: PluginOptions) {
+  install(app: App, options?: PluginOptions) {
     try {
       new PluginContext(app, options);
       Dialogs.initContext();

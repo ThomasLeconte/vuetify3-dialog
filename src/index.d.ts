@@ -60,8 +60,8 @@ export type CreateDialogOptions = {
 
 export type CreateNotifyOptions = {
   text: string;
-  level?: string;
-  location?: string;
+  level?: Level;
+  location?: VSnackbar['$props']['location'];
   notifyOptions?: VSnackbar['$props'];
 };
 
@@ -122,7 +122,7 @@ declare module '@vue/runtime-core' {
 }
 
 type Vuetify3DialogsPlugin = {
-  install(app: App, options: PluginOptions): void;
+  install(app: App, options?: PluginOptions): any;
 };
 
 export const Vuetify3Dialog: Vuetify3DialogsPlugin;
