@@ -39,7 +39,8 @@ export function createNotification(options: CreateNotifyOptions) {
       options.notifyOptions?.location ||
       PluginContext.getPluginOptions()?.defaults?.notify?.location ||
       'top right';
-    let location = potentialLocation.split(' ')[0] || 'top';
+    let locationY = potentialLocation.split(' ')[0] || 'top';
+    let locationX = potentialLocation.split(' ')[1] || 'right';
     let div = document.createElement('div');
 
     if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
@@ -65,17 +66,22 @@ export function createNotification(options: CreateNotifyOptions) {
 
       if ((vuetifyDivOverlay as HTMLElement)?.childElementCount > 1) {
         for (let child of (vuetifyDivOverlay as HTMLElement).children) {
-          if (child === (vuetifyDivOverlay as HTMLElement).lastElementChild) continue;
-          // console.log('child', child);
+          if (
+            child === (vuetifyDivOverlay as HTMLElement).lastElementChild ||
+            !(
+              child.classList.contains('v-snackbar--' + locationX) &&
+              child.classList.contains('v-snackbar--' + locationY)
+            )
+          )
+            continue;
           if ((child as HTMLElement).lastElementChild) {
-            // console.log('child of child', (child as HTMLElement).lastElementChild);
             margin += ((child as HTMLElement).lastElementChild as HTMLElement).offsetHeight + 12;
           }
         }
       }
 
       if (margin > 0) {
-        switch (location) {
+        switch (locationY) {
           case 'top':
             (vuetifyDivOverlay?.lastElementChild as HTMLElement).style.marginTop = `${margin + 12}px`;
             break;
