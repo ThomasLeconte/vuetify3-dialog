@@ -95,7 +95,7 @@ export function createBottomSheetList(
 ): Promise<string>;
 
 //Vue augmented module declaration
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   interface ComponentCustomProperties {
     $dialog: {
       create: (options: CreateDialogOptions) => Promise<string>;
