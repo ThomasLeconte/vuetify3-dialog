@@ -18,6 +18,8 @@
             <v-btn id="create-custom-component-dialog" @click="createCustomComponentDialog()" color="warning">Custom component Dialog</v-btn>
             <v-btn id="success-dialog" @click="successDialog()" color="success">Success Dialog</v-btn>
             <v-btn id="confirm-dialog" @click="confirmDialog()" color="primary">Confirm Dialog</v-btn>
+            <br/>
+            <v-btn id="custom-component-dialog-notif" @click="customComponentDialogNotif()" color="brown">Dialog w/Notification</v-btn>
           </div>
         </div>
 
@@ -58,6 +60,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import MyComponent from "./MyComponent.vue";
+import DialogNotifComponent from "./DialogNotifComponent.vue";
 import sfcExampleVue from "./sfc-example.vue";
 
 
@@ -91,6 +94,17 @@ export default defineComponent({
         dialogOptions: {
           width: "600px",
           persistent: true
+        }
+      })
+    },
+    customComponentDialogNotif(){
+      this.$dialog.create({
+        customComponent: {
+          component: DialogNotifComponent,
+          props: { message: "Notification within Dialog!" }
+        },
+        dialogOptions: {
+          width: "600px"
         }
       })
     },
