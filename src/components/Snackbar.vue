@@ -5,7 +5,11 @@ import { VSnackbar, VLayout } from 'vuetify/lib/components/index.mjs';
 const props = defineProps({
   text: {
     type: String,
-    required: true
+    required: false
+  },
+  htmlContent: {
+    type: String,
+    default: false
   },
   location: {
     type: String,
@@ -46,7 +50,8 @@ function close(){
       :dark="level === 'warning' || level === 'error'"
       @update:model-value="close()"
     >
-      {{text}}
+      <span v-if="text">{{text}}</span>
+      <div v-if="htmlContent" v-html="htmlContent"></div>
     </VSnackbar>
   </VLayout>
 </template>
