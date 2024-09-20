@@ -28,6 +28,7 @@
           <div class="mt-5">
             <v-btn id="create-notification" @click="createNotification()">Create notification</v-btn>
             <v-btn id="error-notification" @click="errorNotification()" color="error">Error notification</v-btn>
+            <v-btn id="html-notification" @click="createNotificationWithHTML()" color="error">Html notification</v-btn>
           </div>
         </div>
 
@@ -126,6 +127,16 @@ export default defineComponent({
     },
     errorNotification(){
       this.$notify.error("Hello error!\nLorem ipsum dolor sit amet, consectetur!", {timeout: 3000, location: 'bottom right'})
+    },
+    createNotificationWithHTML(){
+      this.$notify.create({
+        text: "Hello world!",
+        htmlContent: "<b>HTML content</b>",
+        notifyOptions: {
+          timeout: 3000,
+          location: 'top right'
+        }
+      })
     },
     createBottomsheet(){
       this.$bottomSheet.create({

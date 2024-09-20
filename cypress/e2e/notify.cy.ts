@@ -19,6 +19,15 @@ it('error notification', () => {
   cy.get('div.v-snackbar__wrapper').should('have.class', 'bg-error')
 })
 
+it('Html notification', () => {
+  cy.get('button#html-notification').click()
+  cy.get('div.v-snackbar--active').should('exist')
+  cy.get('div.v-snackbar__wrapper').should('exist')
+  cy.get('div.v-snackbar__content b').should('exist')
+  cy.get('div.v-snackbar__content b').should('contain', 'HTML content')
+  cy.get('div.v-snackbar__wrapper').should('have.class', 'bg-info')
+})
+
 it('create sfc notification', () => {
   cy.get('button#sfc-create-notification').click()
   cy.get('div.v-snackbar--active').should('exist')
