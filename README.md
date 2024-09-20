@@ -59,9 +59,8 @@ this.$dialog.create({
 })
 ```
 <br>
-<hr>
 
-####  **NEW (V1.4.0)**
+#### Custom dialog inner component 
 You can pass a custom component to render inside the dialog, with it props binded! Here's how to do it :
 ```js
 this.$dialog.create({
@@ -110,6 +109,7 @@ You can create a fully personalized snackbar with the following method :
 //message, timeout, level, variant, rounded, position
 this.$notify.create({
   text: "My snackbar message",
+  htmlContent: "<b>My snackbar message</b>", // optional (included in 1.5.3)
   level: 'success',
   location: 'top right',
   notifyOptions: {
