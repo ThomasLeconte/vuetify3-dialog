@@ -43,11 +43,13 @@ export function createNotification(options: CreateNotifyOptions) {
     let locationX = potentialLocation.split(' ')[1] || 'right';
     let div = document.createElement('div');
 
-    if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
+    if (!isNotEmptyAndNotNull(options.text) && !isNotEmptyAndNotNull(options.htmlContent))
+      throw new Error('text or htmlContent is required');
 
     return new Promise((resolve, reject) => {
       const props = {
         text: options.text,
+        htmlContent: options.htmlContent,
         level: options.level,
         location: potentialLocation,
         notifyOptions: options.notifyOptions || PluginContext.getPluginOptions()?.defaults?.notify || undefined,
@@ -98,6 +100,6 @@ export function createNotification(options: CreateNotifyOptions) {
   }
 }
 
-function isNotEmptyAndNotNull(value: string): boolean {
+function isNotEmptyAndNotNull(value?: string): boolean {
   return value !== undefined && value !== null && value.trim().length > 0 && value !== '';
 }

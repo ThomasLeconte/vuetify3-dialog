@@ -59,7 +59,8 @@ export type CreateDialogOptions = {
 };
 
 export type CreateNotifyOptions = {
-  text: string;
+  text?: string;
+  htmlContent?: string;
   level?: Level;
   location?: VSnackbar['$props']['location'];
   notifyOptions?: VSnackbar['$props'];
