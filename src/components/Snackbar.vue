@@ -9,7 +9,7 @@ const props = defineProps({
   },
   htmlContent: {
     type: String,
-    default: false
+    required: false
   },
   location: {
     type: String,
