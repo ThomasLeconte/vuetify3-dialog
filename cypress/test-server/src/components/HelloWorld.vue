@@ -84,7 +84,7 @@ export default defineComponent({
           { key: 'button1', title: 'Button 1', variant: 'outlined', color: 'error' },
           { key: 'button2', title: 'Button 2', variant: 'tonal', color: 'success' }
         ]
-      })
+      }).then((key: any) => console.log(key))
     },
     createCustomComponentDialog(){
       this.$dialog.create({

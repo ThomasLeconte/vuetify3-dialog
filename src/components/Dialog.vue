@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ComponentOptions } from 'types';
-import { Component, PropType, ref } from 'vue';
+import { Component, PropType, ref, watch } from 'vue';
 import { VDialog } from 'vuetify/lib/components/index.mjs';
 import Card from './Card.vue';
 
@@ -49,6 +49,13 @@ function close(buttonKey: string | boolean){
   showDialog.value = false
   emit('closeDialog', buttonKey)
 }
+
+// ------- WATCH ---------
+watch((showDialog), (newValue) => {
+  if(!newValue){
+    close(false)
+  }
+})
 </script>
 
 
