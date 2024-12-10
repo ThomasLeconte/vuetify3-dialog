@@ -8,7 +8,7 @@ export default class Dialogs {
     PluginContext.getApp().config.globalProperties.$dialog = {
       create: createDialog,
       confirm: confirmDialog,
-      warn: warnDialog,
+      warning: warningDialog,
       error: errorDialog,
       info: infoDialog,
       success: successDialog,
@@ -59,7 +59,7 @@ export function createDialog(options: CreateDialogOptions) {
   }
 }
 
-export function warnDialog(options: BasicDialogOptions) {
+export function warningDialog(options: BasicDialogOptions) {
   return createDialog({
     title: options.title || 'Warning',
     text: options.text,

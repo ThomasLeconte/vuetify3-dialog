@@ -100,7 +100,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     $dialog: {
       create: (options: CreateDialogOptions) => Promise<string>;
-      warn: (options: BasicDialogOptions) => Promise<string>;
+      warning: (options: BasicDialogOptions) => Promise<string>;
       error: (options: BasicDialogOptions) => Promise<string>;
       info: (options: BasicDialogOptions) => Promise<string>;
       success: (options: BasicDialogOptions) => Promise<string>;
@@ -109,7 +109,7 @@ declare module 'vue' {
 
     $notify: {
       create: (options: CreateNotifyOptions) => Promise<string>;
-      warn: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
+      warning: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
       error: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
       info: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
       success: (text: string, title?: string, notifyOptions?: any) => Promise<string>;

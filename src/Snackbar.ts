@@ -8,7 +8,7 @@ export default class SnackBar {
   public static initContext(): void {
     PluginContext.getApp().config.globalProperties.$notify = {
       create: createNotification,
-      warn: notifyWarning,
+      warning: notifyWarning,
       error: notifyError,
       info: notifyInfo,
       success: notifySuccess,
