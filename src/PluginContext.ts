@@ -9,7 +9,7 @@ export default class PluginContext {
     if (!app) throw new Error('Error during initialization : app is required');
     PluginContext.app = app;
 
-    const vuetify = app._context.mixins.find((mixin) => mixin.computed && mixin.computed.$vuetify);
+    const vuetify = app._context.mixins.find((mixin) => mixin.computed?.$vuetify);
     if (!vuetify)
       throw new Error('Error during initialization : vuetify is required. Please declare it with Vue.use(Vuetify)');
 

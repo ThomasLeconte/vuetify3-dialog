@@ -35,12 +35,12 @@ export function notifySuccess(text: string, notifyOptions?: VSnackbar['$props'])
 export function createNotification(options: CreateNotifyOptions) {
   try {
     const potentialLocation =
-      options.location ||
-      options.notifyOptions?.location ||
-      PluginContext.getPluginOptions()?.defaults?.notify?.location ||
+      options.location ??
+      options.notifyOptions?.location ??
+      PluginContext.getPluginOptions()?.defaults?.notify?.location ??
       'top right';
-    let locationY = potentialLocation.split(' ')[0] || 'top';
-    let locationX = potentialLocation.split(' ')[1] || 'right';
+    let locationY = potentialLocation.split(' ')[0] ?? 'top';
+    let locationX = potentialLocation.split(' ')[1] ?? 'right';
     let div = document.createElement('div');
 
     if (!isNotEmptyAndNotNull(options.text) && !isNotEmptyAndNotNull(options.htmlContent))
@@ -52,7 +52,7 @@ export function createNotification(options: CreateNotifyOptions) {
         htmlContent: options.htmlContent,
         level: options.level,
         location: potentialLocation,
-        notifyOptions: options.notifyOptions || PluginContext.getPluginOptions()?.defaults?.notify || undefined,
+        notifyOptions: options.notifyOptions ?? PluginContext.getPluginOptions()?.defaults?.notify ?? undefined,
         onCloseSnackbar: () => {
           resolve(true);
         },

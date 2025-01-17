@@ -55,7 +55,3 @@ function close(){
     </VSnackbar>
   </VLayout>
 </template>
-
-<style>
-
-</style>
