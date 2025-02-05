@@ -52,7 +52,7 @@ export function createNotification(options: CreateNotifyOptions) {
         htmlContent: options.htmlContent,
         level: options.level,
         location: potentialLocation,
-        notifyOptions: options.notifyOptions ?? PluginContext.getPluginOptions()?.defaults?.notify ?? undefined,
+        notifyOptions: options.notifyOptions ?? PluginContext.getPluginOptions()?.defaults?.notify,
         onCloseSnackbar: () => {
           resolve(true);
         },
