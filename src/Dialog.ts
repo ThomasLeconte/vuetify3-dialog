@@ -24,8 +24,8 @@ export function createDialog(options: CreateDialogOptions) {
       if (!isNotEmptyAndNotNull(options.title)) throw new Error('title is required');
       if (!isNotEmptyAndNotNull(options.text)) throw new Error('text is required');
     } else {
-      options.title = options.title || '';
-      options.text = options.text || '';
+      options.title = options.title ?? '';
+      options.text = options.text ?? '';
     }
 
     if (options.buttons) {
@@ -40,11 +40,11 @@ export function createDialog(options: CreateDialogOptions) {
         icon: options.icon,
         level: options.level,
         customComponent: options.customComponent,
-        dialogOptions: options.dialogOptions ||
-          PluginContext.getPluginOptions()?.defaults?.dialog?.component || {
+        dialogOptions: options.dialogOptions ??
+          PluginContext.getPluginOptions()?.defaults?.dialog?.component ?? {
             width: '400px',
           },
-        cardOptions: options.cardOptions || PluginContext.getPluginOptions()?.defaults?.dialog?.card || undefined,
+        cardOptions: options.cardOptions ?? PluginContext.getPluginOptions()?.defaults?.dialog?.card ?? undefined,
         onCloseDialog: (value: string | boolean) => {
           resolve(value);
         },
@@ -61,7 +61,7 @@ export function createDialog(options: CreateDialogOptions) {
 
 export function warningDialog(options: BasicDialogOptions) {
   return createDialog({
-    title: options.title || 'Warning',
+    title: options.title ?? 'Warning',
     text: options.text,
     icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'warning', ...options.buttonOptions }],
@@ -72,7 +72,7 @@ export function warningDialog(options: BasicDialogOptions) {
 
 export function errorDialog(options: BasicDialogOptions) {
   return createDialog({
-    title: options.title || 'Error',
+    title: options.title ?? 'Error',
     text: options.text,
     icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'error', ...options.buttonOptions }],
@@ -83,7 +83,7 @@ export function errorDialog(options: BasicDialogOptions) {
 
 export function infoDialog(options: BasicDialogOptions) {
   return createDialog({
-    title: options.title || 'Info',
+    title: options.title ?? 'Info',
     text: options.text,
     icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'info', ...options.buttonOptions }],
@@ -94,7 +94,7 @@ export function infoDialog(options: BasicDialogOptions) {
 
 export function successDialog(options: BasicDialogOptions) {
   return createDialog({
-    title: options.title || 'Success',
+    title: options.title ?? 'Success',
     text: options.text,
     icon: options.icon,
     buttons: [{ key: 'ok', title: 'OK', color: 'success', ...options.buttonOptions }],
@@ -108,10 +108,10 @@ export function confirmDialog(options: ConfirmDialogOptions) {
     title: options.title,
     text: options.text,
     buttons: [
-      { key: false, title: options.cancelText || 'Cancel', color: 'grey', ...options.cancelButtonOptions },
+      { key: false, title: options.cancelText ?? 'Cancel', color: 'grey', ...options.cancelButtonOptions },
       {
         key: true,
-        title: options.confirmationText || 'Confirm',
+        title: options.confirmationText ?? 'Confirm',
         color: 'warning',
         ...options.confirmationButtonOptions,
       },

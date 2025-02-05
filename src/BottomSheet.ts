@@ -39,8 +39,7 @@ export function createBottomSheet(options: CreateBottomSheetOptions) {
     const div = document.createElement('div');
     return new Promise((resolve, reject) => {
       const props = {
-        bottomSheetOptions:
-          options?.bottomSheetOptions || PluginContext.getPluginOptions()?.defaults?.bottomSheet || undefined,
+        bottomSheetOptions: options?.bottomSheetOptions ?? PluginContext.getPluginOptions()?.defaults?.bottomSheet,
         dialogOptions: options?.dialogOptions,
         items: options?.items,
         title: options?.title,
