@@ -54,7 +54,7 @@ this.$dialog.create({
   dialogOptions: {
     //any v-dialog api options
   }
-}).then((anwser) => {
+}).then(({buttonKey, result}) => {
   //Do something with the anwser corresponding to the key of the clicked button
 })
 ```
@@ -81,7 +81,7 @@ this.$dialog.create({
 `this.$dialog` also have a `confirm` method, which is a shortcut for the previous method with only two buttons : "Yes" and "No". 
 ```js
 this.$dialog.confirm({title: "My title", text: "My dialog message", cancelText: "No", confirmationText: "Yes", cancelButtonOptions: ..., confirmationButtonOptions: ...})
-.then((anwser) => {
+.then(({buttonKey, result}) => {
   //Do something with the boolean anwser
 })
 ```
@@ -192,7 +192,7 @@ import { createBottomSheet } from 'vuetify3-dialog'
 
 if(true){
   createDialog({ title: "My title", text: "My dialog message" })
-  .then((anwser) => {
+  .then(({buttonKey, result}) => {
     //Do something with the anwser corresponding to the key of the clicked button
   })
 

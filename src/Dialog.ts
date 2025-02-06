@@ -45,7 +45,7 @@ export function createDialog(options: CreateDialogOptions) {
             width: '400px',
           },
         cardOptions: options.cardOptions ?? PluginContext.getPluginOptions()?.defaults?.dialog?.card ?? undefined,
-        onCloseDialog: (value: string | boolean) => {
+        onCloseDialog: (value: { buttonKey: string | boolean; result: any }) => {
           resolve(value);
         },
       };

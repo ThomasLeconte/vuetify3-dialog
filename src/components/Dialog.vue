@@ -45,9 +45,9 @@ const emit = defineEmits(['closeDialog'])
 let showDialog = ref(true)
 
 // ------- METHODS -------
-function close(buttonKey: string | boolean){
+function close(buttonKey: string | boolean, result?: any){
   showDialog.value = false
-  emit('closeDialog', buttonKey)
+  emit('closeDialog', { buttonKey, result })
 }
 
 // ------- WATCH ---------
@@ -57,7 +57,6 @@ watch((showDialog), (newValue) => {
   }
 })
 </script>
-
 
 <template>
   <VDialog

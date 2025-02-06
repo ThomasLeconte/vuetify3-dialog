@@ -84,7 +84,14 @@ export default defineComponent({
           { key: 'button1', title: 'Button 1', variant: 'outlined', color: 'error' },
           { key: 'button2', title: 'Button 2', variant: 'tonal', color: 'success' }
         ]
-      }).then((key: any) => console.log(key))
+      }).then((result: any) => {
+        console.log(result)
+        if (result.buttonKey === 'button1') {
+          // Handle button1 action
+        } else if (result.buttonKey === 'button2') {
+          // Handle button2 action
+        }
+      })
     },
     createCustomComponentDialog(){
       this.$dialog.create({
@@ -114,7 +121,7 @@ export default defineComponent({
     },
     confirmDialog(){
       this.$dialog.confirm({title: "My confirm dialog", text: "Hello world!", level: 'warning', cancelText: 'Cancel button', confirmationText: 'Confirm button'})
-        .then((v: boolean) => console.log(v))
+        .then(({buttonKey}) => console.log(buttonKey))
     },
     createNotification(){
       this.$notify.create({
