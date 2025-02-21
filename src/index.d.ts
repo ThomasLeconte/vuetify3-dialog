@@ -96,6 +96,8 @@ export function createBottomSheetList(
 ): Promise<string>;
 
 //Vue augmented module declaration
+// TODO: figure out why it cannot be 'vue'
+// @ts-ignore: works on Vue 3, fails in Vue 2
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $dialog: {

@@ -14,7 +14,7 @@
     "vue": "^3.2.0",
     "vue-router": "^4.0.0",
     "vuetify": "^3.6.8",
-    "vuetify3-dialog": "file:../..",
+    "vuetify3-dialog": "file:../../lib",
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
