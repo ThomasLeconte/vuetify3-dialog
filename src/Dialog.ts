@@ -112,7 +112,7 @@ export function confirmDialog(options: ConfirmDialogOptions) {
       {
         key: true,
         title: options.confirmationText ?? 'Confirm',
-        color: 'warning',
+        color: options.level ?? 'primary',
         ...options.confirmationButtonOptions,
       },
     ],

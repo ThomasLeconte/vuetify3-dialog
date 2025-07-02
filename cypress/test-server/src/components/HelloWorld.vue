@@ -126,7 +126,7 @@ export default defineComponent({
       })
     },
     errorNotification(){
-      this.$notify.error("Hello error!\nLorem ipsum dolor sit amet, consectetur!", {timeout: 3000, location: 'bottom right'})
+      this.$notify.error("Hello error! Lorem ipsum dolor sit amet, consectetur!", {timeout: 3000, location: 'bottom right'})
     },
     createNotificationWithHTML(){
       this.$notify.create({

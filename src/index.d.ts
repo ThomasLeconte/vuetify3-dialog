@@ -111,10 +111,10 @@ declare module '@vue/runtime-core' {
 
     $notify: {
       create: (options: CreateNotifyOptions) => Promise<string>;
-      warning: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
-      error: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
-      info: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
-      success: (text: string, title?: string, notifyOptions?: any) => Promise<string>;
+      warning: (text: string, notifyOptions?: any) => Promise<string>;
+      error: (text: string, notifyOptions?: any) => Promise<string>;
+      info: (text: string, notifyOptions?: any) => Promise<string>;
+      success: (text: string, notifyOptions?: any) => Promise<string>;
     };
 
     $bottomSheet: {
