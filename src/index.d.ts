@@ -75,7 +75,7 @@ export type CreateBottomSheetOptions = {
 
 //SFC dialogs methods
 export function createDialog(options: CreateDialogOptions): Promise<string>;
-export function warnDialog(options: BasicDialogOptions): Promise<string>;
+export function warningDialog(options: BasicDialogOptions): Promise<string>;
 export function errorDialog(options: BasicDialogOptions): Promise<string>;
 export function infoDialog(options: BasicDialogOptions): Promise<string>;
 export function successDialog(options: BasicDialogOptions): Promise<string>;
