@@ -24,6 +24,14 @@
         </div>
 
         <div class="card">
+          <h3 class="primary-text">Banners</h3>
+          <div class="mt-5">
+            <v-btn id="create-notification" @click="createBanner()">Create banner</v-btn>
+            <v-btn id="error-notification" @click="errorBanner()" color="error">Error banner</v-btn>
+          </div>
+        </div>
+
+        <div class="card">
           <h3 class="primary-text">Notifications</h3>
           <div class="mt-5">
             <v-btn id="create-notification" @click="createNotification()">Create notification</v-btn>
@@ -137,6 +145,14 @@ export default defineComponent({
           location: 'top right'
         }
       })
+    },
+    createBanner() {
+      this.$banner.create({
+        text: "Hello world!"
+      })
+    },
+    errorBanner() {
+      this.$banner.error("This is a huge error ...", {position: "absolute"})
     },
     createBottomsheet(){
       this.$bottomSheet.create({
