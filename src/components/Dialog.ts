@@ -1,20 +1,7 @@
 import PluginContext from 'PluginContext';
 import { BasicDialogOptions, ConfirmDialogOptions, CreateDialogOptions } from 'types';
 import { h, render } from 'vue';
-import Dialog from './components/Dialog.vue';
-
-export default class Dialogs {
-  public static initContext(): void {
-    PluginContext.getApp().config.globalProperties.$dialog = {
-      create: createDialog,
-      confirm: confirmDialog,
-      warning: warningDialog,
-      error: errorDialog,
-      info: infoDialog,
-      success: successDialog,
-    };
-  }
-}
+import Dialog from '../vue-components/Dialog.vue';
 
 export function createDialog(options: CreateDialogOptions) {
   try {
