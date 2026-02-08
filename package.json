@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test-server": "cd cypress/test-server && npm run dev",
-    "e2e": "cypress run --browser chrome --headless --spec \"cypress/e2e/**/*.cy.ts\"",
+    "e2e": "cypress run --browser electron --headless --spec \"cypress/e2e/**/*.cy.ts\"",
     "test": "start-server-and-test test-server http://localhost:3000 e2e",
     "build": "npm run format && npm run lint && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",

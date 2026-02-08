@@ -5,6 +5,7 @@ import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
 import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
+import { VBanner } from 'vuetify/lib/components/VBanner/index.mjs';
 
 export type PluginOptions = {
   defaults?: {
@@ -14,6 +15,7 @@ export type PluginOptions = {
     };
     notify?: VSnackbar['$props'];
     bottomSheet?: VBottomSheet['$props'];
+    banner?: VBanner['$props'];
   };
   vuetify?: Plugin;
 };
@@ -72,4 +74,10 @@ export type CreateBottomSheetOptions = {
   items?: VListItem['$props'][];
   dialogOptions?: CreateDialogOptions;
   bottomSheetOptions?: VBottomSheet['$props'];
+};
+
+export type CreateBannerOptions = {
+  text: string;
+  level?: Level;
+  bannerOptions?: VBanner['$props'];
 };

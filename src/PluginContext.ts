@@ -10,6 +10,7 @@ import {
   warningDialog,
 } from './components/Dialog';
 import { createNotification, notifyError, notifyInfo, notifySuccess, notifyWarning } from './components/Snackbar';
+import { createBanner, errorBanner, infoBanner, successBanner, warningBanner } from './components/Banner';
 
 export default class PluginContext {
   private static pluginOptions: PluginOptions;
@@ -43,6 +44,15 @@ export default class PluginContext {
     PluginContext.getApp().config.globalProperties.$bottomSheet = {
       create: createBottomSheet,
       createList: createBottomSheetList,
+    };
+
+    // App top banner properties
+    PluginContext.getApp().config.globalProperties.$banner = {
+      create: createBanner,
+      info: infoBanner,
+      success: successBanner,
+      warning: warningBanner,
+      error: errorBanner,
     };
 
     // App notify properties

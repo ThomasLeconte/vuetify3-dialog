@@ -152,7 +152,7 @@ export default defineComponent({
       })
     },
     errorBanner() {
-      this.$banner.error("This is a huge error ...", {position: "absolute"})
+      this.$banner.error("This is a huge error ...")
     },
     createBottomsheet(){
       this.$bottomSheet.create({
