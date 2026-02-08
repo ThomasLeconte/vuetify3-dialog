@@ -43,6 +43,7 @@ export function createBanner(options: CreateBannerOptions) {
         bannerOptions: options?.bannerOptions ?? PluginContext.getPluginOptions()?.defaults?.banner,
         text: options?.text,
         level: options.level,
+        closable: options?.closable,
         onCloseBanner: (value: string | boolean) => {
           // Clean up the banner container when closed
           if (bannerContainer.parentNode) {

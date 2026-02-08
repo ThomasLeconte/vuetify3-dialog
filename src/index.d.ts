@@ -77,6 +77,7 @@ export type CreateBottomSheetOptions = {
 export type CreateBannerOptions = {
   text: string;
   level?: Level;
+  closable?: boolean;
   bannerOptions?: VBanner['$props'];
 };
 
