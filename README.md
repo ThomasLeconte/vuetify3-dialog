@@ -7,6 +7,7 @@ Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars 
 - [Usage](#usage)
   - [Dialogs](#dialogs)
   - [Snackbars](#snackbars)
+  - [Banners (since v1.6.0)](#banners)
   - [Bottom sheets](#bottom-sheets)
   - [SFC compatibility](#sfc-compatibility)
 - [Developers](#developers)
@@ -36,7 +37,7 @@ app.mount('#app')
 ```
 
 ## Usage
-You can now use the plugin in your components. There is two main variable available in all your project : `$dialog` and `$notify`. Each of them have methods to create full personalized dialogs or snackbars, and other ones to create simple dialogs or snackbars with a message and a title, by precizing level of severity. Let's see how to use them.
+You can now use the plugin in your components. There are three main variables available in all your project : `$dialog`, `$notify`, and `$banner`. Each of them have methods to create full personalized dialogs, snackbars, or banners, and other ones to create simple components with a message and a title, by specifying level of severity. Let's see how to use them.
 
 ### Dialogs
 You can create a fully personalized dialog with the following method :
@@ -135,6 +136,63 @@ There is 4 levels of severity : `info`, `success`, `warning` and `error`.
 __Usefull links:__
 - [v-snackbar api](https://vuetifyjs.com/en/api/v-snackbar/)
 
+### Banners
+You can create banners with different severity levels:
+
+```js
+// Basic banner
+this.$banner.create({
+  text: "This is an informational message",
+  bannerOptions: {
+    // any v-banner api options
+  }
+}).then(() => {
+  // Called when banner is closed
+})
+```
+
+Shortcut methods for different severity levels:
+
+```js
+// Info banner (default)
+this.$banner.create({ text: "Informational message" })
+
+// Success banner
+this.$banner.success("Operation completed successfully!")
+
+// Warning banner
+this.$banner.warning("This action cannot be undone!")
+
+// Error banner
+this.$banner.error("Critical error occurred!")
+```
+
+All banner methods support optional banner options:
+```js
+this.$banner.create({
+  text: "Custom banner",
+  level: 'info', // 'info', 'success', 'warning', or 'error'
+  closable: true, // default: true
+  bannerOptions: {
+    // any v-banner api options
+    lines: 'two',
+    icon: 'mdi-information',
+    // ...
+  }
+})
+```
+
+**Features:**
+- Automatic positioning as first child of v-main
+- HTML content sanitization for security
+- Multiple banners can coexist
+- Responsive design
+- Accessibility compliant
+
+
+  __Usefull links:__
+- [v-banner api](https://vuetifyjs.com/en/api/v-banner/)
+
 ### Bottom sheets
 
 > [!WARNING]  
@@ -183,12 +241,13 @@ this.$bottomSheet.create({
 
 
 ### SFC compatibility
-If you want to use this plugin in an SFC component, some methods are available. Working principe is the same as previous methods, and arguments are the same.  
+If you want to use this plugin in an SFC component, some methods are available. Working principle is the same as previous methods, and arguments are the same.  
 ```html
 <script setup>
 import { createDialog, warnDialog, confirmDialog } from 'vuetify3-dialog'
 import { createNotification, notifySuccess } from 'vuetify3-dialog'
 import { createBottomSheet } from 'vuetify3-dialog'
+import { createBanner, successBanner, errorBanner } from 'vuetify3-dialog'
 
 if(true){
   createDialog({ title: "My title", text: "My dialog message" })
@@ -200,6 +259,11 @@ if(true){
 
   createBottomSheet({ title: "My bottomsheet title", text: "My bottomsheet message" })
   .then(() => {})
+
+  // Banner examples
+  createBanner({ text: "Informational message" })
+  successBanner("Operation completed!")
+  errorBanner("Critical error occurred!")
 }
 </script>
 ```

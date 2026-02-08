@@ -1,69 +1,137 @@
 <template>
-  <v-container class="fill-height">
+  <v-container class="fill-height pa-0">
     <v-responsive class="align-center text-center fill-height">
-      <v-img height="300" src="@/assets/logo.svg" />
+      <v-img height="300" src="@/assets/logo.svg" class="mb-4" />
 
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
 
-      <h1 class="text-h2 font-weight-bold">Vuetify</h1>
+      <h1 class="text-h2 font-weight-bold mb-2">Vuetify3 Dialog</h1>
+      <div class="text-h6 font-weight-regular mb-8">Interactive Demo</div>
 
-      <div class="py-14" />
+      <v-divider class="mb-8" />
 
-      <div class="d-flex flex-wrap justify-center align-start">
+      <v-row class="justify-center">
+        <!-- Dialogs Section -->
+        <v-col cols="12" md="3" class="mb-4">
+          <v-card class="demo-card" elevation="4">
+            <v-card-title class="bg-primary text-white">
+              <v-icon left>mdi-message-text</v-icon>
+              Dialogs
+            </v-card-title>
+            <v-card-text class="pt-4">
+              <div class="d-flex flex-column gap-2">
+                <v-btn id="create-dialog" @click="createDialog()" block>Create Dialog</v-btn>
+                <v-btn id="create-custom-component-dialog" @click="createCustomComponentDialog()" color="warning" block>Custom Component</v-btn>
+                <v-btn id="success-dialog" @click="successDialog()" color="success" block>Success Dialog</v-btn>
+                <v-btn id="confirm-dialog" @click="confirmDialog()" color="primary" block>Confirm Dialog</v-btn>
+                <v-btn id="custom-component-dialog-notif" @click="customComponentDialogNotif()" color="brown" block>Dialog w/Notification</v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <div class="card">
-          <h3 class="primary-text">Dialogs</h3>
-          <div class="mt-5">
-            <v-btn id="create-dialog" @click="createDialog()">Create Dialog</v-btn>
-            <v-btn id="create-custom-component-dialog" @click="createCustomComponentDialog()" color="warning">Custom component Dialog</v-btn>
-            <v-btn id="success-dialog" @click="successDialog()" color="success">Success Dialog</v-btn>
-            <v-btn id="confirm-dialog" @click="confirmDialog()" color="primary">Confirm Dialog</v-btn>
-            <br/>
-            <v-btn id="custom-component-dialog-notif" @click="customComponentDialogNotif()" color="brown">Dialog w/Notification</v-btn>
-          </div>
-        </div>
+        <!-- Banners Section -->
+        <v-col cols="12" md="3" class="mb-4">
+          <v-card class="demo-card" elevation="4">
+            <v-card-title class="bg-error text-white">
+              <v-icon left>mdi-bell</v-icon>
+              Banners
+            </v-card-title>
+            <v-card-text class="pt-4">
+              <div class="d-flex flex-column gap-2">
+                <v-btn id="create-banner" @click="createBanner()" block>Info Banner</v-btn>
+                <v-btn id="success-banner" @click="successBanner()" color="success" block>Success Banner</v-btn>
+                <v-btn id="warning-banner" @click="warningBanner()" color="warning" block>Warning Banner</v-btn>
+                <v-btn id="error-banner" @click="errorBanner()" color="error" block>Error Banner</v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <div class="card">
-          <h3 class="primary-text">Banners</h3>
-          <div class="mt-5">
-            <v-btn id="create-notification" @click="createBanner()">Create banner</v-btn>
-            <v-btn id="error-notification" @click="errorBanner()" color="error">Error banner</v-btn>
-          </div>
-        </div>
+        <!-- Notifications Section -->
+        <v-col cols="12" md="3" class="mb-4">
+          <v-card class="demo-card" elevation="4">
+            <v-card-title class="bg-info text-white">
+              <v-icon left>mdi-bell-ring</v-icon>
+              Notifications
+            </v-card-title>
+            <v-card-text class="pt-4">
+              <div class="d-flex flex-column gap-2">
+                <v-btn id="create-notification" @click="createNotification()" block>Create Notification</v-btn>
+                <v-btn id="info-notification" @click="infoNotification()" color="info" block>Info Notification</v-btn>
+                <v-btn id="success-notification" @click="successNotification()" color="success" block>Success Notification</v-btn>
+                <v-btn id="warning-notification" @click="warningNotification()" color="warning" block>Warning Notification</v-btn>
+                <v-btn id="error-notification" @click="errorNotification()" color="error" block>Error Notification</v-btn>
+                <v-btn id="html-notification" @click="createNotificationWithHTML()" color="purple" block>HTML Notification</v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
 
-        <div class="card">
-          <h3 class="primary-text">Notifications</h3>
-          <div class="mt-5">
-            <v-btn id="create-notification" @click="createNotification()">Create notification</v-btn>
-            <v-btn id="error-notification" @click="errorNotification()" color="error">Error notification</v-btn>
-            <v-btn id="html-notification" @click="createNotificationWithHTML()" color="error">Html notification</v-btn>
-          </div>
-        </div>
+        <!-- Bottom Sheets Section -->
+        <v-col cols="12" md="3" class="mb-4">
+          <v-card class="demo-card" elevation="4">
+            <v-card-title class="bg-secondary text-white">
+              <v-icon left>mdi-cellphone-dock</v-icon>
+              Bottom Sheets
+            </v-card-title>
+            <v-card-text class="pt-4">
+              <div class="d-flex flex-column gap-2">
+                <v-btn id="create-bottomsheet-card" @click="createBottomsheet()" block>Card Bottom Sheet</v-btn>
+                <v-btn id="create-bottomsheet-list" @click="createBottomsheetList()" block>List Bottom Sheet</v-btn>
+                <v-btn id="create-bottomsheet-custom" @click="createBottomsheetCustom()" color="teal" block>Custom Bottom Sheet</v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
 
-        <div class="card">
-          <h3 class="primary-text">Bottom sheets</h3>
-          <div class="mt-5">
-            <v-btn id="create-bottomsheet-card" @click="createBottomsheet()">bottom-sheet card</v-btn>
-            <v-btn id="create-bottomsheet-list" @click="createBottomsheetList()">bottom-sheet list</v-btn>
-          </div>
-        </div>
-      </div>
+      <v-divider class="my-8" />
 
-      <div>
-        <sfcExampleVue/>
-      </div>
+      <!-- SFC Examples Section -->
+      <v-row class="justify-center">
+        <v-col cols="12" md="8">
+          <v-card class="demo-card" elevation="4">
+            <v-card-title class="bg-success text-white">
+              <v-icon left>mdi-code-tags</v-icon>
+              SFC Component Examples
+            </v-card-title>
+            <v-card-text class="pt-4">
+              <sfcExampleVue/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
 
     </v-responsive>
   </v-container>
 </template>
 
-<style>
-  .card {
-    border: 3px solid #333333;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 0 5px;
-  }
+<style scoped>
+.demo-card {
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.demo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.v-card-title {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.d-flex.flex-column.gap-2 {
+  gap: 8px;
+}
+
+.v-btn {
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
 </style>
 
 <script lang="ts">
@@ -77,12 +145,14 @@ export default defineComponent({
   name: "HelloWorld",
   components: {
     sfcExampleVue,
-    MyComponent
+    MyComponent,
+    DialogNotifComponent
   },
   data: () => ({
     show: true
   }),
   methods: {
+    // Dialog Methods
     createDialog(){
       this.$dialog.create({
         title: "My dialog",
@@ -124,6 +194,24 @@ export default defineComponent({
       this.$dialog.confirm({title: "My confirm dialog", text: "Hello world!", level: 'warning', cancelText: 'Cancel button', confirmationText: 'Confirm button'})
         .then((v: boolean) => console.log(v))
     },
+
+    // Banner Methods
+    createBanner() {
+      this.$banner.create({
+        text: "This is an informational banner message!"
+      })
+    },
+    successBanner() {
+      this.$banner.success("Operation completed successfully!")
+    },
+    warningBanner() {
+      this.$banner.warning("This action cannot be undone!")
+    },
+    errorBanner() {
+      this.$banner.error("This is a critical error that needs attention!")
+    },
+
+    // Notification Methods
     createNotification(){
       this.$notify.create({
         text: "Hello world!",
@@ -132,6 +220,15 @@ export default defineComponent({
           location: 'top right'
         }
       })
+    },
+    infoNotification() {
+      this.$notify.info("This is an informational message", { timeout: 3000 })
+    },
+    successNotification() {
+      this.$notify.success("Operation completed successfully!", { timeout: 3000 })
+    },
+    warningNotification() {
+      this.$notify.warning("Please check your input data", { timeout: 3000 })
     },
     errorNotification(){
       this.$notify.error("Hello error! Lorem ipsum dolor sit amet, consectetur!", {timeout: 3000, location: 'bottom right'})
@@ -146,14 +243,8 @@ export default defineComponent({
         }
       })
     },
-    createBanner() {
-      this.$banner.create({
-        text: "Hello world!"
-      })
-    },
-    errorBanner() {
-      this.$banner.error("This is a huge error ...")
-    },
+
+    // Bottom Sheet Methods
     createBottomsheet(){
       this.$bottomSheet.create({
         bottomSheetOptions: { inset: true },
@@ -178,6 +269,19 @@ export default defineComponent({
         ]
       }).then((value: any) => {
         console.log(value)
+      })
+    },
+    createBottomsheetCustom() {
+      this.$bottomSheet.create({
+        bottomSheetOptions: { inset: true },
+        dialogOptions: {
+          title: "Custom Bottom Sheet",
+          text: "This is a custom bottom sheet with advanced options",
+          buttons: [
+            { key: 'cancel', title: 'Cancel', variant: 'text', color: 'grey' },
+            { key: 'confirm', title: 'Confirm', variant: 'flat', color: 'primary' }
+          ]
+        }
       })
     }
   }
