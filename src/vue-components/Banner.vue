@@ -58,13 +58,13 @@ function close(){
       :bg-color="level ?? 'default'"
       class="vuetify3-banner"
       v-bind="bannerOptions">
-        <div class="d-flex align-start justify-space-between w-100">
+        <div class="d-flex align-center justify-space-between w-100">
           <div>
             <template v-if="htmlContent">{{ sanitizedHtml }}</template>
-            <template v-else>{{ text }}</template>
+            <template v-else><p>{{ text }}</p></template>
           </div>
           <div v-if="closable">
-            <VBtn v-if="closable" @click="close" icon="mdi-close" variant="tonal"></VBtn>
+            <VBtn v-if="closable" @click="close" icon="mdi-close" variant="tonal" size="small"></VBtn>
           </div>
         </div>
     </VBanner>
