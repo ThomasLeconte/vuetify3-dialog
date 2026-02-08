@@ -5,6 +5,7 @@ import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
 import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
 import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
+import { VBanner } from 'vuetify/lib/components/VBanner/index.mjs';
 
 export type PluginOptions = {
   vuetify: Plugin;
@@ -73,6 +74,13 @@ export type CreateBottomSheetOptions = {
   dialogOptions?: CreateDialogOptions;
 };
 
+export type CreateBannerOptions = {
+  text: string;
+  level?: Level;
+  closable?: boolean;
+  bannerOptions?: VBanner['$props'];
+};
+
 //SFC dialogs methods
 export function createDialog(options: CreateDialogOptions): Promise<string>;
 export function warningDialog(options: BasicDialogOptions): Promise<string>;
@@ -94,6 +102,13 @@ export function createBottomSheetList(
   items: VListItem['$props'][],
   options?: CreateBottomSheetOptions,
 ): Promise<string>;
+
+//SFC banner methods
+export function createBanner(options: CreateBannerOptions): Promise<string>;
+export function infoBanner(text: string, bannerOptions?: VBanner['$props']): Promise<string>;
+export function successBanner(text: string, bannerOptions?: VBanner['$props']): Promise<string>;
+export function warningBanner(text: string, bannerOptions?: VBanner['$props']): Promise<string>;
+export function errorBanner(text: string, bannerOptions?: VBanner['$props']): Promise<string>;
 
 //Vue augmented module declaration
 declare module 'vue' {
@@ -118,6 +133,14 @@ declare module 'vue' {
     $bottomSheet: {
       create: (options: CreateBottomSheetOptions) => Promise<string>;
       createList: (items: VListItem['$props'][], options?: CreateBottomSheetOptions) => Promise<string>;
+    };
+
+    $banner: {
+      create: (options: CreateBannerOptions) => Promise<string>;
+      info: (text: string, bannerOptions?: any) => Promise<string>;
+      success: (text: string, bannerOptions?: any) => Promise<string>;
+      warning: (text: string, bannerOptions?: any) => Promise<string>;
+      error: (text: string, bannerOptions?: any) => Promise<string>;
     };
   }
 }

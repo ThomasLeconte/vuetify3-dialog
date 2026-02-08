@@ -2,19 +2,7 @@ import PluginContext from 'PluginContext';
 import { CreateNotifyOptions } from 'types';
 import { h, render } from 'vue';
 import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
-import Snackbar from './components/Snackbar.vue';
-
-export default class SnackBar {
-  public static initContext(): void {
-    PluginContext.getApp().config.globalProperties.$notify = {
-      create: createNotification,
-      warning: notifyWarning,
-      error: notifyError,
-      info: notifyInfo,
-      success: notifySuccess,
-    };
-  }
-}
+import Snackbar from '../vue-components/Snackbar.vue';
 
 export function notifyWarning(text: string, notifyOptions?: VSnackbar['$props']) {
   return createNotification({ text, level: 'warning', notifyOptions });

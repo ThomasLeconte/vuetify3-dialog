@@ -2,16 +2,7 @@ import PluginContext from 'PluginContext';
 import { CreateBottomSheetOptions } from 'types';
 import { h, render } from 'vue';
 import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
-import BottomSheet from './components/BottomSheet.vue';
-
-export default class BottomSheets {
-  public static initContext(): void {
-    PluginContext.getApp().config.globalProperties.$bottomSheet = {
-      create: createBottomSheet,
-      createList: createBottomSheetList,
-    };
-  }
-}
+import BottomSheet from '../vue-components/BottomSheet.vue';
 
 export function createBottomSheetList(items: VListItem['$props'][], options?: CreateBottomSheetOptions) {
   items.forEach((item) => {

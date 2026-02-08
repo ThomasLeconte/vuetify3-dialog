@@ -1,6 +1,6 @@
 {
   "name": "vuetify3-dialog",
-  "version": "1.5.6",
+  "version": "1.6.0",
   "description": "Vue 3 & Vuetify 3 plugin to create dialogs, toasts and bottom-sheets with Promises.",
   "keywords": [
     "vue",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test-server": "cd cypress/test-server && npm run dev",
-    "e2e": "cypress run --browser chrome --headless --spec \"cypress/e2e/**/*.cy.ts\"",
+    "e2e": "cypress run --browser electron --headless --spec \"cypress/e2e/**/*.cy.ts\"",
     "test": "start-server-and-test test-server http://localhost:3000 e2e",
     "build": "npm run format && npm run lint && rollup -c",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -44,8 +44,8 @@
     "lib/**/*"
   ],
   "devDependencies": {
-    "@types/node": "^18.15.0",
     "@types/jest": "^29.5.3",
+    "@types/node": "^18.15.0",
     "babel-jest": "^29.6.2",
     "cypress": "^12.17.3",
     "jest": "^29.6.2",
@@ -68,5 +68,8 @@
   "peerDependencies": {
     "vue": "^3.2.0",
     "vuetify": "^3.4.0"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.1"
   }
 }

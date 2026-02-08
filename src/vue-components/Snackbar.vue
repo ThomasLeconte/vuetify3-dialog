@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { VSnackbar, VLayout } from 'vuetify/lib/components/index.mjs';
+import DOMPurify from 'dompurify';
 
 const props = defineProps({
   text: {
@@ -31,6 +32,18 @@ const emit = defineEmits(['closeSnackbar'])
 // ------- DATA -------
 let showSnackbar = ref(true)
 
+// ------- COMPUTED -------
+const sanitizedHtml = computed(() => {
+  if (!props.htmlContent) return '';
+  
+  return DOMPurify.sanitize(props.htmlContent, {
+    ALLOWED_TAGS: ['b', 'i', 'u', 'em', 'strong', 'a', 'br', 'p', 'span'],
+    ALLOWED_ATTR: ['href', 'title', 'target', 'class'],
+    FORBID_ATTR: ['style', 'onclick', 'onerror', 'onload'],
+    FORBID_TAGS: ['script', 'iframe']
+  });
+})
+
 // ------- METHODS -------
 function close(){
   showSnackbar.value = false
@@ -51,7 +64,7 @@ function close(){
       @update:model-value="close()"
     >
       <span v-if="text">{{text}}</span>
-      <div v-if="htmlContent" v-html="htmlContent"></div>
+      <div v-if="htmlContent" v-html="sanitizedHtml"></div>
     </VSnackbar>
   </VLayout>
 </template>

@@ -1,5 +1,16 @@
 import { PluginOptions } from 'types';
 import { App } from 'vue';
+import { createBottomSheet, createBottomSheetList } from './components/BottomSheet';
+import {
+  confirmDialog,
+  createDialog,
+  errorDialog,
+  infoDialog,
+  successDialog,
+  warningDialog,
+} from './components/Dialog';
+import { createNotification, notifyError, notifyInfo, notifySuccess, notifyWarning } from './components/Snackbar';
+import { createBanner, errorBanner, infoBanner, successBanner, warningBanner } from './components/Banner';
 
 export default class PluginContext {
   private static pluginOptions: PluginOptions;
@@ -14,6 +25,44 @@ export default class PluginContext {
       throw new Error('Error during initialization : vuetify is required. Please declare it with Vue.use(Vuetify)');
 
     if (_pluginOptions) PluginContext.pluginOptions = _pluginOptions;
+
+    this.initComponentsContext();
+  }
+
+  private initComponentsContext(): void {
+    // App dialog properties
+    PluginContext.getApp().config.globalProperties.$dialog = {
+      create: createDialog,
+      confirm: confirmDialog,
+      warning: warningDialog,
+      error: errorDialog,
+      info: infoDialog,
+      success: successDialog,
+    };
+
+    // App boottomSheet properties
+    PluginContext.getApp().config.globalProperties.$bottomSheet = {
+      create: createBottomSheet,
+      createList: createBottomSheetList,
+    };
+
+    // App top banner properties
+    PluginContext.getApp().config.globalProperties.$banner = {
+      create: createBanner,
+      info: infoBanner,
+      success: successBanner,
+      warning: warningBanner,
+      error: errorBanner,
+    };
+
+    // App notify properties
+    PluginContext.getApp().config.globalProperties.$notify = {
+      create: createNotification,
+      warning: notifyWarning,
+      error: notifyError,
+      info: notifyInfo,
+      success: notifySuccess,
+    };
   }
 
   static getPluginOptions(): PluginOptions {
