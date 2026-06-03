@@ -10,6 +10,9 @@ import { VBanner } from 'vuetify/lib/components/VBanner/index.mjs';
 export type PluginOptions = {
   vuetify: Plugin;
   defaults?: {
+    baseComponents: {
+      dialog: ComponentOptions;
+    };
     dialog?: {
       component?: VDialog['$props'];
       card?: VCard['$props'];

@@ -50,6 +50,13 @@ function close(buttonKey: string | boolean){
   emit('closeDialog', buttonKey)
 }
 
+function getCustomComponentProps() {
+  return {
+    ...props,
+    ...props.customComponent?.props
+  }
+}
+
 // ------- WATCH ---------
 watch((showDialog), (newValue) => {
   if(!newValue){
@@ -66,7 +73,7 @@ watch((showDialog), (newValue) => {
     v-bind="dialogOptions"
   >
     <template v-if="customComponent">
-      <component :is="customComponent.component" v-bind="customComponent.props" @closeDialog="close" ref="custom-component" />
+      <component :is="customComponent.component" v-bind="getCustomComponentProps()" @closeDialog="close" ref="custom-component" />
     </template>
     <Card
       v-else

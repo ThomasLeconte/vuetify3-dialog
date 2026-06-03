@@ -26,7 +26,7 @@ export function createDialog(options: CreateDialogOptions) {
         buttons: options.buttons,
         icon: options.icon,
         level: options.level,
-        customComponent: options.customComponent,
+        customComponent: PluginContext.getPluginOptions()?.defaults?.baseComponents?.dialog || options.customComponent,
         dialogOptions: options.dialogOptions ??
           PluginContext.getPluginOptions()?.defaults?.dialog?.component ?? {
             width: '400px',
