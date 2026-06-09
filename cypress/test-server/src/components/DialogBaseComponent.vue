@@ -5,10 +5,28 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineEmits, ref, watch } from 'vue';
 import {CreateDialogOptions} from 'vuetify3-dialog'
 
+// EVENTS
+const emit = defineEmits(['closeDialog'])
+
+// PROPS
+withDefaults(defineProps<CreateDialogOptions>(), {})
+
+// DATA
 const show = ref(true)
-const props = withDefaults(defineProps<CreateDialogOptions>(), {})
-onMounted(console.log(props))
+
+// WATCH
+watch(show, (value) => {
+  if(value === false) {
+    close();
+  }
+})
+
+// FUNCTIONS
+function close() {
+  emit('closeDialog', "toto")
+
+}
 </script>

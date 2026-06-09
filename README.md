@@ -10,6 +10,7 @@ Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars 
   - [Banners (since v1.6.0)](#banners)
   - [Bottom sheets](#bottom-sheets)
   - [SFC compatibility](#sfc-compatibility)
+  - [Custom base components (since v1.7.0)](#custom-base-components)
 - [Developers](#developers)
 
 ## Install it
@@ -266,6 +267,77 @@ if(true){
   errorBanner("Critical error occurred!")
 }
 </script>
+```
+
+### Custom base components
+If you want to use a custom base component instead of the default component used with this library, you can define it, let's see an example with dialogs :
+#### SFC
+```vue
+<script setup lang="ts">
+  import { defineEmits, ref, watch } from 'vue';
+  import {CreateDialogOptions} from 'vuetify3-dialog'
+
+  // EVENTS
+  const emit = defineEmits(['closeDialog'])
+
+  // PROPS
+  withDefaults(defineProps<CreateDialogOptions>(), {})
+
+  // DATA
+  const show = ref(true)
+
+  // WATCH
+  watch(show, (value) => {
+    if(value === false) {
+      close();
+    }
+  })
+
+  // FUNCTIONS
+  function close() {
+    emit('closeDialog', "toto")
+
+  }
+</script>
+```
+
+### Classic
+```vue
+<script lang="ts">
+import { ComponentObjectPropsOptions, defineComponent } from 'vue';
+import {CreateDialogOptions} from 'vuetify3-dialog';
+
+export default defineComponent({
+  name: 'AnotherDialogBaseComponent',
+  props: {} as ComponentObjectPropsOptions<CreateDialogOptions>,
+  created() {
+    // ...
+  }
+})
+</script>
+```
+
+Then, you can define your own actions and design, depending on dialog level in props!
+
+Finally, you need to declare this component as base component for dialogs. To do this, go to plugin installation, and add following snippet to plugin configuration:
+```ts
+// Import your component
+import MyBaseComponent from './MyBaseComponent.vue'
+
+// App declaration
+app
+  // ...
+  .use(Vuetify3Dialog, {
+    defaults: { 
+      baseComponents: {
+        dialog: {
+          component: MyBaseComponent
+        }
+      },
+      // ... 
+    }
+  })
+
 ```
 
 ## Developers
