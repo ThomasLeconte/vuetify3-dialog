@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, getCurrentInstance } from 'vue';
-import { VBtn, VSpacer, VBanner, VLayout } from 'vuetify/lib/components/index.mjs';
+import { computed, ref } from 'vue';
+import { VBanner, VBtn, VLayout } from 'vuetify/components';
 import DOMPurify from 'dompurify';
 
 const props = defineProps({

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VIcon } from 'vuetify/lib/components/index.mjs';
+import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VIcon } from 'vuetify/components';
 
 const props = defineProps({
   title: {
