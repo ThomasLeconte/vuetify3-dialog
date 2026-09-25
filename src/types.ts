@@ -1,11 +1,11 @@
 import { Component, Plugin } from 'vue';
-import { VBottomSheet } from 'vuetify/lib/components/VBottomSheet/index.mjs';
-import { VBtn } from 'vuetify/lib/components/VBtn/index.mjs';
-import { VCard } from 'vuetify/lib/components/VCard/index.mjs';
-import { VDialog } from 'vuetify/lib/components/VDialog/index.mjs';
-import { VListItem } from 'vuetify/lib/components/VList/index.mjs';
-import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
-import { VBanner } from 'vuetify/lib/components/VBanner/index.mjs';
+import { VBottomSheet } from 'vuetify/components';
+import { VBtn } from 'vuetify/components';
+import { VCard } from 'vuetify/components';
+import { VDialog } from 'vuetify/components';
+import { VListItem } from 'vuetify/components';
+import { VSnackbar } from 'vuetify/components';
+import { VBanner } from 'vuetify/components';
 
 export type PluginOptions = {
   defaults?: {

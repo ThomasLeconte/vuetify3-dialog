@@ -1,7 +1,7 @@
 import PluginContext from 'PluginContext';
 import { CreateNotifyOptions } from 'types';
 import { h, render } from 'vue';
-import { VSnackbar } from 'vuetify/lib/components/VSnackbar/index.mjs';
+import { VSnackbar } from 'vuetify/components';
 import Snackbar from '../vue-components/Snackbar.vue';
 
 export function notifyWarning(text: string, notifyOptions?: VSnackbar['$props']) {

@@ -1,8 +1,9 @@
 # Vuetify 3 Dialog ![Javascript](https://img.shields.io/badge/-Javascript-F7DF1E?style=rounded&logo=javascript&logoColor=black) ![Typescript](https://img.shields.io/badge/-Typescript-2e86de?style=rounded&logo=typescript&logoColor=black) ![Vue.js](https://img.shields.io/badge/-Vue.js-4FC08D?style=rounded&logo=vue.js&logoColor=white)
-Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
+Lite Vue plugin working with Vuetify 3.X and 4.X, allowing you to show dialogs, snackbars, banners and bottom sheets programatically.
 > Inspired by [vuetify-dialog](https://www.npmjs.com/package/vuetify-dialog) (@yariksav)
 
-> ✨ **News** ✨ Since **v1.7.0**, Vuetify3-dialog is fully compatible with **Vuetify 4**, without any changes on your codebase! You can still use Vuetify 3 with this library, but you will need to use **v1.6.0**.
+> ✨ **News** ✨ Since **v1.7.0**, Vuetify3-dialog is fully compatible with **Vuetify 4**, without any changes on your
+> codebase! You can still use Vuetify 3 with this library, but you will need to use **v1.6.0**.
 
 ## Summary
 - [Installation](#install-it)
@@ -39,7 +40,9 @@ app.mount('#app')
 ```
 
 ## Usage
-You can now use the plugin in your components. There are three main variables available in all your project : `$dialog`, `$notify`, and `$banner`. Each of them have methods to create full personalized dialogs, snackbars, or banners, and other ones to create simple components with a message and a title, by specifying level of severity. Let's see how to use them.
+You can now use the plugin in your components. There are three main variables available in all your project : `$dialog`,
+`$notify`, `$banner`, and `$bottomSheet`. Each of them have methods to create full personalized dialogs, snackbars,
+banners and bottom-sheets, and other ones to create simple components with a message and a title, by specifying level of severity. Let's see how to use them.
 
 ### Dialogs
 You can create a fully personalized dialog with the following method :
@@ -243,13 +246,11 @@ this.$bottomSheet.create({
 
 
 ### SFC compatibility
-If you want to use this plugin in an SFC component, some methods are available. Working principle is the same as previous methods, and arguments are the same.  
+If you want to use this plugin in an SFC component, some methods are available. Working principle is the same as previous
+methods, and arguments are the same.  
 ```html
 <script setup>
-import { createDialog, warnDialog, confirmDialog } from 'vuetify3-dialog'
-import { createNotification, notifySuccess } from 'vuetify3-dialog'
-import { createBottomSheet } from 'vuetify3-dialog'
-import { createBanner, successBanner, errorBanner } from 'vuetify3-dialog'
+import { createDialog, notifySuccess, createBottomSheet, createBanner, successBanner, errorBanner } from 'vuetify3-dialog'
 
 if(true){
   createDialog({ title: "My title", text: "My dialog message" })
@@ -274,6 +275,8 @@ if(true){
 If you want to contribute to this project, you can clone it and run `npm install` to install dependencies.  
 
 Then, you need to test your changes. A demo project is located at `cypress/test-server` of this repository. You can launch it with `npm run test-server`.    
-If you have the following error : <span style="color: #e74c3c">[vite] Internal server error: Failed to resolve entry for package "vuetify3-dialog". The package may have incorrect main/module/exports specified in its package.json.</span>, make sure you have run `npm run build` before to build the plugin and make it available for the demo project.  
+If you have the following error : <span style="color: #e74c3c">[vite] Internal server error: Failed to resolve entry for
+package "vuetify3-dialog". The package may have incorrect main/module/exports specified in its package.json.</span>, make
+sure you have run `npm run build` before to build the plugin and make it available for the demo project.  
 
 Finally, when you will have finish your changes, make sure all tests are passing with `npm run test`, thanks in advance !

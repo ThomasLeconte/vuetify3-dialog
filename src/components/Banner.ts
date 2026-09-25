@@ -1,5 +1,5 @@
 import { CreateBannerOptions } from '../types';
-import { VBanner } from 'vuetify/lib/components/VBanner/index.mjs';
+import { VBanner } from 'vuetify/components';
 import PluginContext from '../PluginContext';
 import { h, render } from 'vue';
 import Banner from '../vue-components/Banner.vue';
