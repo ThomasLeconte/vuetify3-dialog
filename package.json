@@ -66,8 +66,8 @@
     "vuetify": "^4.2.2"
   },
   "peerDependencies": {
-    "vue": "^3.2.0",
-    "vuetify": "^4.2.2"
+    "vue": "^3.0.0",
+    "vuetify": "^4.0.0"
   },
   "dependencies": {
     "dompurify": "^3.3.1"
