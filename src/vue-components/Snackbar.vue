@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { VSnackbar, VLayout } from 'vuetify/lib/components/index.mjs';
+import { computed, ref } from 'vue';
+import { VLayout, VSnackbar } from 'vuetify/components';
 import DOMPurify from 'dompurify';
 
 const props = defineProps({
@@ -35,7 +35,7 @@ let showSnackbar = ref(true)
 // ------- COMPUTED -------
 const sanitizedHtml = computed(() => {
   if (!props.htmlContent) return '';
-  
+
   return DOMPurify.sanitize(props.htmlContent, {
     ALLOWED_TAGS: ['b', 'i', 'u', 'em', 'strong', 'a', 'br', 'p', 'span'],
     ALLOWED_ATTR: ['href', 'title', 'target', 'class'],

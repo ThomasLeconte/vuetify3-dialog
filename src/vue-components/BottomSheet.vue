@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import Card from './Card.vue';
-import { VCard, VCardText, VCardTitle, VList, VListItem, VBottomSheet } from 'vuetify/lib/components/index.mjs';
+import { VBottomSheet, VCard, VCardText, VCardTitle, VList, VListItem } from 'vuetify/components';
 
 const props = defineProps({
   bottomSheetOptions: {
@@ -80,5 +80,5 @@ function close(value: string | boolean){
       @buttonClicked="close"
     />
   </VBottomSheet>
-  
+
 </template>

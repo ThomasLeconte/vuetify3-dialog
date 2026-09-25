@@ -2,6 +2,8 @@
 Lite Vue plugin working with Vuetify, allowing you to show dialogs or snackbars programatically.
 > Inspired by [vuetify-dialog](https://www.npmjs.com/package/vuetify-dialog) (@yariksav)
 
+> ✨ **News** ✨ Since **v1.7.0**, Vuetify3-dialog is fully compatible with **Vuetify 4**, without any changes on your codebase! You can still use Vuetify 3 with this library, but you will need to use **v1.6.0**.
+
 ## Summary
 - [Installation](#install-it)
 - [Usage](#usage)

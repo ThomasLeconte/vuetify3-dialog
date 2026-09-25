@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ComponentOptions } from 'types';
 import { Component, PropType, ref, watch } from 'vue';
-import { VDialog } from 'vuetify/lib/components/index.mjs';
+import { VDialog } from 'vuetify/components';
 import Card from './Card.vue';
 
 const props = defineProps({
